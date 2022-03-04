@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" title="Collapse/expand all the suites" class="collapse-all-link">
+          <img src="collapseall.gif" class="collapse-all-icon">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" panel-name="suite-Regression_PAYPAL" class="navigator-link">
+              <span class="suite-name border-failed">Regression PAYPAL</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" panel-name="test-xml-Regression_PAYPAL" class="navigator-link ">
+                    <span>paypal.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="testlist-Regression_PAYPAL" class="navigator-link ">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="group-Regression_PAYPAL" class="navigator-link ">
+                    <span>1 group</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="times-Regression_PAYPAL" class="navigator-link ">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="reporter-Regression_PAYPAL" class="navigator-link ">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="ignored-methods-Regression_PAYPAL" class="navigator-link ">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="chronological-Regression_PAYPAL" class="navigator-link ">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">1 method, 1 failed,   </span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Regression_PAYPAL" class="hide-methods failed suite-Regression_PAYPAL"> (hide)</a> <!-- hide-methods failed suite-Regression_PAYPAL -->
+                      <a href="#" panel-name="suite-Regression_PAYPAL" class="show-methods failed suite-Regression_PAYPAL"> (show)</a> <!-- show-methods failed suite-Regression_PAYPAL -->
+                    </span>
+                    <div class="method-list-content failed suite-Regression_PAYPAL">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Regression_PAYPAL" title="com.fnoor.FundraisingTest.PAYPAL" class="method navigator-link" hash-for-method="paypalCardinalComSingle3D(paypalCardinalComSingle3D)">paypalCardinalComSingle3D(paypalCardinalComSingle3D)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Regression_PAYPAL -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Regression_PAYPAL" class="panel Regression_PAYPAL">
+          <div class="suite-Regression_PAYPAL-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.fnoor.FundraisingTest.PAYPAL</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="paypalCardinalComSingle3D(paypalCardinalComSingle3D)">
+                  </a> <!-- paypalCardinalComSingle3D(paypalCardinalComSingle3D) -->
+                  <span class="method-name">paypalCardinalComSingle3D</span>
+                  <span class="parameters">(paypalCardinalComSingle3D)</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for frame to be available: Cardinal-CCA-IFrame (tried for 30 second(s) with 500 milliseconds interval)
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;ip-192-168-4-165.us-east-2.compute.internal&apos;, ip: &apos;fe80:0:0:0:1c9e:ea31:5d7c:f2c0%en0&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;12.2.1&apos;, java.version: &apos;17&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 98.0.4758.109, chrome: {chromedriverVersion: 97.0.4692.71 (adefa7837d02a..., userDataDir: /var/folders/fx/6zl54gyd2qd...}, goog:chromeOptions: {debuggerAddress: localhost:52862}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 04e1d1f23d5329e16c46a66010854e55
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at com.fnoor.FundraisingTest.PAYPAL.paypalCardinalComSingle3D(PAYPAL.java:367)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 31 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Regression_PAYPAL-class-failed -->
+        </div> <!-- panel Regression_PAYPAL -->
+        <div panel-name="test-xml-Regression_PAYPAL" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">/Users/ievgeniiagaidarenko/ENS/ENSelenium/paypal.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;Regression PAYPAL&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
+  &lt;parameter name=&quot;environment&quot; value=&quot;${environment}&quot;/&gt;
+  &lt;parameter name=&quot;payViaPayPalRecurring&quot; value=&quot;payViaPayPalRecurring&quot;/&gt;
+  &lt;parameter name=&quot;payViaPayPalDtDFee&quot; value=&quot;payViaPayPalDtDFee&quot;/&gt;
+  &lt;parameter name=&quot;paypalPaymentsProSingle&quot; value=&quot;paypalPaymentsProSingle&quot;/&gt;
+  &lt;parameter name=&quot;browser&quot; value=&quot;chrome&quot;/&gt;
+  &lt;parameter name=&quot;paypalCardinalComSingle3D&quot; value=&quot;paypalCardinalComSingle3D&quot;/&gt;
+  &lt;parameter name=&quot;paypalViaPayPalCardinalComSingle3D&quot; value=&quot;paypalViaPayPalCardinalComSingle3D&quot;/&gt;
+  &lt;parameter name=&quot;payViaPayPalSingle&quot; value=&quot;payViaPayPalSingle&quot;/&gt;
+  &lt;parameter name=&quot;stripeViaPaypalSingle&quot; value=&quot;stripeViaPaypalSingle&quot;/&gt;
+  &lt;parameter name=&quot;paypalCardinalComRecurring3D&quot; value=&quot;paypalCardinalComRecurring3D&quot;/&gt;
+  &lt;parameter name=&quot;payPalPaymentsProRecurring&quot; value=&quot;payPalPaymentsProRecurring&quot;/&gt;
+  &lt;groups&gt;
+    &lt;run&gt;
+      &lt;include name=&quot;SF&quot;/&gt;
+    &lt;/run&gt;
+  &lt;/groups&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Donations PAYPAL&quot; verbose=&quot;0&quot;&gt;
+    &lt;groups&gt;
+      &lt;run&gt;
+        &lt;include name=&quot;SF&quot;/&gt;
+      &lt;/run&gt;
+    &lt;/groups&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.fnoor.FundraisingTest.PAYPAL&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;paypalCardinalComSingle3D&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- com.fnoor.FundraisingTest.PAYPAL --&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Donations PAYPAL --&gt;
+&lt;/suite&gt; &lt;!-- Regression PAYPAL --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Regression_PAYPAL" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Regression PAYPAL</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Donations PAYPAL (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Regression_PAYPAL" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Regression PAYPAL</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">paypal</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">paypalCardinalComSingle3D</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Regression_PAYPAL" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Regression PAYPAL</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Regression_PAYPAL');
+function tableData_Regression_PAYPAL() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(1);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'paypalCardinalComSingle3D')
+data.setCell(0, 2, 'com.fnoor.FundraisingTest.PAYPAL')
+data.setCell(0, 3, 128710);
+window.suiteTableData['Regression_PAYPAL']= { tableData: data, tableDiv: 'times-div-Regression_PAYPAL'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <div id="times-div-Regression_PAYPAL">
+              </div> <!-- times-div-Regression_PAYPAL -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Regression_PAYPAL" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Regression PAYPAL</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Regression_PAYPAL" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">8 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.fnoor.FundraisingTest.PAYPAL</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">payViaPayPalRecurring</span>
+                <br/>
+                <span class="ignored-method-name">paypalPaymentsProSingle</span>
+                <br/>
+                <span class="ignored-method-name">paypalViaPayPalCardinalComSingle3D</span>
+                <br/>
+                <span class="ignored-method-name">payViaPayPalSingle</span>
+                <br/>
+                <span class="ignored-method-name">paypalCardinalComRecurring3D</span>
+                <br/>
+                <span class="ignored-method-name">payPalPaymentsProRecurring</span>
+                <br/>
+                <span class="ignored-method-name">stripeViaPaypalSingle</span>
+                <br/>
+                <span class="ignored-method-name">payViaPayPalDtDFee</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Regression_PAYPAL" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.fnoor.FundraisingTest.PAYPAL</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <span class="method-name">setUp(chrome)</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">paypalCardinalComSingle3D(paypalCardinalComSingle3D)</span>
+                <span class="method-start">3578 ms</span>
+              </div> <!-- test-method -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

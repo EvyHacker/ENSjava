@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="SF">
+    <parameter name="browser" value="${browser}" />
+    <parameter name="environment" value="${environment}"/>
+    <parameter name="SFlogin" value="SFlogin"/>
+
+    <test name="SF"  preserve-order="true">
+        <groups>
+            <run>
+                <include name="sf"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.fnoor.PageBuilder.Salesforce" >
+                <methods>
+                    <include name="SFlogin" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

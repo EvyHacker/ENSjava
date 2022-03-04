@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Regression PAYPAL]" guice-stage="DEVELOPMENT" verbose="0">
+  <parameter name="environment" value="${environment}"/>
+  <parameter name="payViaPayPalRecurring" value="payViaPayPalRecurring"/>
+  <parameter name="payViaPayPalDtDFee" value="payViaPayPalDtDFee"/>
+  <parameter name="paypalPaymentsProSingle" value="paypalPaymentsProSingle"/>
+  <parameter name="browser" value="chrome"/>
+  <parameter name="paypalCardinalComSingle3D" value="paypalCardinalComSingle3D"/>
+  <parameter name="paypalViaPayPalCardinalComSingle3D" value="paypalViaPayPalCardinalComSingle3D"/>
+  <parameter name="payViaPayPalSingle" value="payViaPayPalSingle"/>
+  <parameter name="stripeViaPaypalSingle" value="stripeViaPaypalSingle"/>
+  <parameter name="paypalCardinalComRecurring3D" value="paypalCardinalComRecurring3D"/>
+  <parameter name="payPalPaymentsProRecurring" value="payPalPaymentsProRecurring"/>
+  <test thread-count="5" name="Donations PAYPAL(failed)" verbose="0">
+    <groups>
+      <run>
+        <include name="SF"/>
+        <include name="SF"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.fnoor.FundraisingTest.PAYPAL">
+        <methods>
+          <include name="paypalCardinalComSingle3D" invocation-numbers="0"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.fnoor.FundraisingTest.PAYPAL -->
+    </classes>
+  </test> <!-- Donations PAYPAL(failed) -->
+</suite> <!-- Failed suite [Regression PAYPAL] -->
