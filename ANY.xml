@@ -4,16 +4,16 @@
 <suite name="Regression ANY">
     <parameter name="browser" value="${browser}" />
     <parameter name="environment" value="${environment}"/>
-    <parameter name="iatsSingle" value="iatsSingle"/>
+    <parameter name="IATSSingle" value="IATSSingle"/>
     <parameter name="IATSRecurring" value="IATSRecurring"/>
     <parameter name="IATSACHSingle" value="IATSACHSingle"/>
     <parameter name="IATSACHRecurring" value="IATSACHRecurring"/>
     <parameter name="IATSACHRecurPaymenttypelogic" value="IATSACHRecurPaymenttypelogic"/>
-    <parameter name="iatsSingleOtherAUD" value="iatsSingleOtherAUD"/>
-    <parameter name="iatsSingleOtherCAD" value="iatsSingleOtherCAD"/>
-    <parameter name="iatsSingleOtherUSD" value="iatsSingleOtherUSD"/>
-    <parameter name="iatsSingleCurrencyBasedUSD" value="iatsSingleCurrencyBasedUSD"/>
-    <parameter name="iatsSingleCurrencyBadGatewayCAD" value="iatsSingleCurrencyBadGatewayCAD"/>
+    <parameter name="IATSSingleOtherAUD" value="IATSSingleOtherAUD"/>
+    <parameter name="IATSSingleOtherCAD" value="IATSSingleOtherCAD"/>
+    <parameter name="IATSSingleOtherUSD" value="IATSSingleOtherUSD"/>
+    <parameter name="IATSSingleCurrencyBasedUSD" value="IATSSingleCurrencyBasedUSD"/>
+    <parameter name="IATSSingleCurrencyBadGatewayCAD" value="IATSSingleCurrencyBadGatewayCAD"/>
     <parameter name="IATSvalidateTransaction" value="IATSvalidateTransaction"/>
     <parameter name="moneriseSelectSingle" value="moneriseSelectSingle"/>
     <parameter name="moneriseSelectRecurring" value="moneriseSelectRecurring"/>
@@ -29,7 +29,7 @@
     <test name="dIATS"  preserve-order="false">
         <groups>
             <define name="Only">
-            <include name="iatsSingle"/>
+            <include name="IATSSingle"/>
             </define>
             <run>
                 <include name="all"/>
@@ -38,16 +38,16 @@
         <classes>
             <class name="com.fnoor.FundraisingTestAWS.IATS" >
 <!--                <methods>-->
-<!--                    <include name="iatsSingle" />-->
+<!--                    <include name="IATSSingle" />-->
 <!--                    <include name="IATSRecurring" />-->
 <!--                    <include name="IATSACHSingle" />-->
 <!--                    <include name="IATSACHRecurring" />-->
 <!--                    <include name="IATSACHRecurPaymenttypelogic" />-->
-<!--                    <include name="iatsSingleOtherAUD" />-->
-<!--                    <include name="iatsSingleOtherCAD" />-->
-<!--                    <include name="iatsSingleOtherUSD" />-->
-<!--                    <include name="iatsSingleCurrencyBasedUSD" />-->
-<!--                    <include name="iatsSingleCurrencyBadGatewayCAD" />-->
+<!--                    <include name="IATSSingleOtherAUD" />-->
+<!--                    <include name="IATSSingleOtherCAD" />-->
+<!--                    <include name="IATSSingleOtherUSD" />-->
+<!--                    <include name="IATSSingleCurrencyBasedUSD" />-->
+<!--                    <include name="IATSSingleCurrencyBadGatewayCAD" />-->
 <!--                    <include name="IATSvalidateTransaction" />-->
 <!--                </methods>-->
             </class>

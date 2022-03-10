@@ -9,11 +9,11 @@
 <!--    <parameter name="IATSACHSingle" value="IATSACHSingle"/>-->
 <!--    <parameter name="IATSACHRecurring" value="IATSACHRecurring"/>-->
 <!--    <parameter name="IATSACHRecurPaymenttypelogic" value="IATSACHRecurPaymenttypelogic"/>-->
-<!--    <parameter name="iatsSingleOtherAUD" value="iatsSingleOtherAUD"/>-->
-<!--    <parameter name="iatsSingleOtherCAD" value="iatsSingleOtherCAD"/>-->
-<!--    <parameter name="iatsSingleOtherUSD" value="iatsSingleOtherUSD"/>-->
-<!--    <parameter name="iatsSingleCurrencyBasedUSD" value="iatsSingleCurrencyBasedUSD"/>-->
-<!--    <parameter name="iatsSingleCurrencyBadGatewayCAD" value="iatsSingleCurrencyBadGatewayCAD"/>-->
+<!--    <parameter name="IATSSingleOtherAUD" value="IATSSingleOtherAUD"/>-->
+<!--    <parameter name="IATSSingleOtherCAD" value="IATSSingleOtherCAD"/>-->
+<!--    <parameter name="IATSSingleOtherUSD" value="IATSSingleOtherUSD"/>-->
+<!--    <parameter name="IATSSingleCurrencyBasedUSD" value="IATSSingleCurrencyBasedUSD"/>-->
+<!--    <parameter name="IATSSingleCurrencyBadGatewayCAD" value="IATSSingleCurrencyBadGatewayCAD"/>-->
 <!--    <parameter name="IATSvalidateTransaction" value="IATSvalidateTransaction"/>-->
     <test name="PAGE"  preserve-order="true">
         <groups>
@@ -29,11 +29,11 @@
 <!--                    <include name="IATSACHSingle" />-->
 <!--                    <include name="IATSACHRecurring" />-->
 <!--                    <include name="IATSACHRecurPaymenttypelogic" />-->
-<!--                    <include name="iatsSingleOtherAUD" />-->
-<!--                    <include name="iatsSingleOtherCAD" />-->
-<!--                    <include name="iatsSingleOtherUSD" />-->
-<!--                    <include name="iatsSingleCurrencyBasedUSD" />-->
-<!--                    <include name="iatsSingleCurrencyBadGatewayCAD" />-->
+<!--                    <include name="IATSSingleOtherAUD" />-->
+<!--                    <include name="IATSSingleOtherCAD" />-->
+<!--                    <include name="IATSSingleOtherUSD" />-->
+<!--                    <include name="IATSSingleCurrencyBasedUSD" />-->
+<!--                    <include name="IATSSingleCurrencyBadGatewayCAD" />-->
 <!--                    <include name="IATSvalidateTransaction" />-->
                 </methods>
             </class>

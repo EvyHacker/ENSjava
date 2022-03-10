@@ -19,7 +19,7 @@
             </run>
         </groups>
         <classes>
-            <class name="com.fnoor.FundraisingTestAWS.RSM" >
+            <class name="com.fnoor.FundraisingTest.RSM" >
                 <methods>
                     <include name="rsmSingle" />
                     <include name="rsmRecurring" />

@@ -65,7 +65,7 @@ public void tearDown() {
 
 
 //        //Validate IATSsingle transaction
-//        fields.searchSupporter("pb_iatssingle_" + date.toString() + "@engagingnetworks.online");
+//        fields.searchSupporter("pb_IATSsingle_" + date.toString() + "@engagingnetworks.online");
 //        Thread.sleep(2000);
 //
 //        // Validate supporter Details
@@ -96,7 +96,7 @@ public void tearDown() {
 //                fields.getTransactionDetails().contains("3509"));
 //
 //        //Validate IATS NA Recurring transaction
-//        fields.nextSupporter("pb_iatsrecurring_" + date.toString() + "@engagingnetworks.online");
+//        fields.nextSupporter("pb_IATSrecurring_" + date.toString() + "@engagingnetworks.online");
 //        Thread.sleep(2000);
 //
 //        // Validate supporter Details

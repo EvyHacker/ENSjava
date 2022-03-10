@@ -15,7 +15,7 @@
     <test name="Donations WORLDPAY"  preserve-order="true">
         <groups>
             <run>
-                <include name="iats"/>
+                <include name="IATS"/>
             </run>
         </groups>
         <classes>

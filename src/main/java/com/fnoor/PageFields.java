@@ -171,7 +171,21 @@ public class PageFields {
     WebElement field_PaymentIdeal;
     @FindBy(id = "en__field_transaction_feeCover") WebElement field_FeeCover;
 
-    //   SUPPORTER TRANSACTION DETAILS
+    //div[@class='en__upsellModal__content']
+
+/**
+ *       UPSELL TRANSACTION DETAILS
+ */
+
+    @FindBy(xpath = "//div[@class='en__upsellModal__content']") WebElement field_upsellLightbox;
+    @FindBy(xpath = "(//button[@type='button'])[1]") WebElement field_upsellLightboxYes;
+    @FindBy(xpath = "(//button[@title='Close (Esc)'])[1]") WebElement field_upsellLightboxNo;
+    @FindBy(xpath = "//span[@id='en__upsellModal__close']") WebElement field_upsellLightboxClose;
+
+/**
+ *       SUPPORTER TRANSACTION DETAILS
+ */
+
     @FindBy(id = "searchForm-q") WebElement field_SearchSupporter;
     @FindBy(className = "btn-go") WebElement field_SearchSupporterButton;
     @FindBy(className = "icon--search--color") WebElement field_SelectSupporter;
@@ -907,6 +921,30 @@ public class PageFields {
         field_googleSubmit.click();
     }
 
+    /////////////////////////    TRANSACTION UPSELL     /////////////////////////////////
+
+    public void validateUsellAmount(String text) {
+        Assert.assertTrue("This opt-in question is not pre-checked", field_upsellLightbox.getText()
+                .contains(text));
+
+    }
+
+    public void clickUpsellYes() {
+        field_upsellLightboxYes.click();
+
+    }
+
+    public void clickUpsellNo() {
+        field_upsellLightboxNo.click();
+
+    }
+
+    public void clickUpsellExit() {
+        field_upsellLightboxClose.click();
+
+    }
+
+
 
     /////////////////////////    SUPPORTER DETAILS     /////////////////////////////////
 
@@ -1104,6 +1142,7 @@ public class PageFields {
             }
         }
     }
+
 
 
     public String getTransactionDetails() throws InterruptedException {
