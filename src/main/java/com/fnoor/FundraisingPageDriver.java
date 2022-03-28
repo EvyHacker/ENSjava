@@ -23,7 +23,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static com.fnoor.PageFields.*;
@@ -452,6 +454,13 @@ public class FundraisingPageDriver {
                 options.addArguments("disable-infobars");
                 options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
                 options.setExperimentalOption("useAutomationExtension", false);
+                Map<String, Object> prefs = new HashMap<String, Object>();
+                prefs.put("credentials_enable_service", false);
+                prefs.put("profile.password_manager_enabled", false);
+
+                options.setExperimentalOption("prefs", prefs);
+
+
 
                 driver = new ChromeDriver(options);
                 driver.manage().deleteAllCookies();

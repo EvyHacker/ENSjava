@@ -363,6 +363,7 @@ public class PAYPAL {
 
         //Assert donation amount and submit payment
         //fields.waitForPageLoad();
+        try {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("Cardinal-CCA-IFrame"));
        // driver.switchTo().frame("Cardinal-CCA-IFrame");
@@ -371,16 +372,19 @@ public class PAYPAL {
         Assert.assertTrue("Donation Amount displayed is incorrect", labeltext.contains("$15.00"));
         WebElement myPasswordDynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
-                        (By.id("password")));
+                        (By.name("external.field.password")));
         myPasswordDynamicElement.sendKeys("1234");
         WebElement mySubmitDynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
                         (By.name("UsernamePasswordEntry")));
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", mySubmitDynamicElement);
-        Thread.sleep(2000);
-        fields.waitForPageLoad();
+        } catch (final Exception e) {
+            throw e;
+        }
 
+        Thread.sleep(10000);
+        driver.switchTo().defaultContent();
         String myurl = driver.getCurrentUrl();
         Assert.assertTrue("Urls are not the same",
                 myurl.equals("https://test.engagingnetworks.app/page/13376/donate/3"));
@@ -530,7 +534,7 @@ public class PAYPAL {
         Assert.assertTrue("Donation Amount displayed is incorrect", labeltext.contains("$15.00"));
         WebElement myPasswordDynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
-                        (By.id("password")));
+                        (By.name("external.field.password")));
         myPasswordDynamicElement.sendKeys("1234");
         WebElement mySubmitDynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
