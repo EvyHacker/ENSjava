@@ -924,7 +924,7 @@ public class PageFields {
     /////////////////////////    TRANSACTION UPSELL     /////////////////////////////////
 
     public void validateUsellAmount(String text) {
-        Assert.assertTrue("This opt-in question is not pre-checked", field_upsellLightbox.getText()
+        Assert.assertTrue("Upsell amount is incorrect or missing", field_upsellLightbox.getText()
                 .contains(text));
 
     }

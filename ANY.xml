@@ -26,7 +26,7 @@
     <parameter name="payflowProSingle" value="payflowProSingle"/>
     <parameter name="payflowProRecurring" value="payflowProRecurring"/>
     <parameter name="payflowProPayViaPaypal" value="payflowProPayViaPaypal"/>
-    <test name="dIATS"  preserve-order="false">
+    <test name="Donations"  preserve-order="false">
         <groups>
             <define name="Only">
             <include name="IATSSingle"/>
@@ -36,20 +36,20 @@
             </run>
         </groups>
         <classes>
-            <class name="com.fnoor.FundraisingTestAWS.IATS" >
-<!--                <methods>-->
-<!--                    <include name="IATSSingle" />-->
-<!--                    <include name="IATSRecurring" />-->
-<!--                    <include name="IATSACHSingle" />-->
-<!--                    <include name="IATSACHRecurring" />-->
-<!--                    <include name="IATSACHRecurPaymenttypelogic" />-->
-<!--                    <include name="IATSSingleOtherAUD" />-->
-<!--                    <include name="IATSSingleOtherCAD" />-->
-<!--                    <include name="IATSSingleOtherUSD" />-->
-<!--                    <include name="IATSSingleCurrencyBasedUSD" />-->
-<!--                    <include name="IATSSingleCurrencyBadGatewayCAD" />-->
-<!--                    <include name="IATSvalidateTransaction" />-->
-<!--                </methods>-->
+            <class name="IATS" >
+                <methods>
+                    <include name="IATSSingle" />
+                    <include name="IATSRecurring" />
+                    <include name="IATSACHSingle" />
+                    <include name="IATSACHRecurring" />
+                    <include name="IATSACHRecurPaymenttypelogic" />
+                    <include name="IATSSingleOtherAUD" />
+                    <include name="IATSSingleOtherCAD" />
+                    <include name="IATSSingleOtherUSD" />
+                    <include name="IATSSingleCurrencyBasedUSD" />
+                    <include name="IATSSingleCurrencyBadGatewayCAD" />
+                    <include name="IATSvalidateTransaction" />
+                </methods>
             </class>
         </classes>
     </test>

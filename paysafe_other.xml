@@ -25,7 +25,7 @@
             </run>
         </groups>
         <classes>
-            <class name="com.fnoor.FundraisingTest.PAYSAFE_OTHER_AMOUNT" >
+            <class name="PAYSAFE_OTHER_AMOUNT" >
                 <methods>
                     <include name="paysafeSingle" />
                     <include name="paysafeRecurring" />
