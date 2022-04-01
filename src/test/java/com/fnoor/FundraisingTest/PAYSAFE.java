@@ -781,7 +781,7 @@ public class PAYSAFE {
 
         fields.submit();
 
-        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10 USD monthly gift instead?");
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10.00 USD monthly gift instead?");
         fields.clickUpsellYes();
 
         //      Validate resend code function
@@ -950,7 +950,7 @@ public class PAYSAFE {
 
         fields.submit();
 
-        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10 USD monthly gift instead?");
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10.00 USD monthly gift instead?");
         fields.clickUpsellNo();
 
         //      Validate resend code function

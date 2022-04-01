@@ -637,7 +637,7 @@ public class IATS {
 
         fields.submit();
 
-        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10 USD monthly gift instead?");
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10.00 USD monthly gift instead?");
         fields.clickUpsellYes();
 
 //		Assert that the payment was successful and the third page was reached
@@ -699,7 +699,7 @@ public class IATS {
 
         fields.submit();
 
-        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10 USD monthly gift instead?");
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10.00 USD monthly gift instead?");
         fields.clickUpsellNo();
 
 //		Assert that the payment was successful and the third page was reached
