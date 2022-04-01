@@ -12,6 +12,11 @@
     <parameter name="worldpay3DSecureTest" value="worldpay3DSecureTest"/>
     <parameter name="worldpay3DRecurring" value="worldpay3DRecurring"/>
     <parameter name="worldpayPaypalCCSingle" value="worldpayPaypalCCSingle"/>
+    <parameter name="worldpay3DSecureTestUpsell" value="worldpay3DSecureTestUpsell"/>
+    <parameter name="worldpay3DRecurringUpsell" value="worldpay3DRecurringUpsell"/>
+    <parameter name="worldpay3DSecureTestNoUpsell" value="worldpay3DSecureTestNoUpsell"/>
+    <parameter name="worldpay3DSecureTestUpsellNegative" value="worldpay3DSecureTestUpsellNegative"/>
+
     <test name="Donations WORLDPAY"  preserve-order="true">
         <groups>
             <run>
@@ -26,6 +31,11 @@
                     <include name="worldpay3DSecureTest" />
                     <include name="worldpay3DRecurring" />
                     <include name="worldpayPaypalCCSingle" />
+                    <include name="worldpay3DSecureTestUpsell" />
+                    <include name="worldpay3DRecurringUpsell" />
+                    <include name="worldpay3DSecureTestNoUpsell" />
+                    <include name="worldpay3DSecureTestUpsellNegative" />
+
                 </methods>
             </class>
         </classes>

@@ -18,6 +18,9 @@
     <parameter name="paysafePrimaryPaypalCurrencyCAD" value="paysafePrimaryPaypalCurrencyCAD"/>
     <parameter name="paysafePrimaryPaypalCurrencyUSD" value="paysafePrimaryPaypalCurrencyUSD"/>
     <parameter name="paysafePrimaryPaypalPaymentCurrencyUSD" value="paysafePrimaryPaypalPaymentCurrencyUSD"/>
+    <parameter name="paysafeSingleToRecurUpsale" value="paysafeSingleToRecurUpsale"/>
+    <parameter name="paysafe3DRecurringUpsell" value="paysafe3DRecurringUpsell"/>
+    <parameter name="paysafeSingleToRecurNoUpsale" value="paysafeSingleToRecurNoUpsale"/>
     <test name="Donations PAYSAFE"  preserve-order="true">
         <groups>
             <run>
@@ -38,6 +41,9 @@
                     <include name="paysafePrimaryPaypalCurrencyCAD" />
                     <include name="paysafePrimaryPaypalCurrencyUSD" />
                     <include name="paysafePrimaryPaypalPaymentCurrencyUSD" />
+                    <include name="paysafeSingleToRecurUpsale" />
+                    <include name="paysafe3DRecurringUpsell" />
+                    <include name="paysafeSingleToRecurNoUpsale" />
                 </methods>
             </class>
         </classes>

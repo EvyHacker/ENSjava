@@ -173,6 +173,15 @@ public class PageFields {
 
     //div[@class='en__upsellModal__content']
 
+    /**
+     *       WORLDPAY 3D SECURE
+     */
+
+    @FindBy(xpath = "//select[@name='paResMagicValues']") WebElement field_SelectResponse;
+    @FindBy(xpath = "//option[@value='3DERROR']") WebElement field_SelectErrorResponse;
+
+
+
 /**
  *       UPSELL TRANSACTION DETAILS
  */
@@ -1794,6 +1803,12 @@ public class PageFields {
 
 
     /////////////////////////    SELECT FROM DROPDOWN METHODS     /////////////////////////////////
+
+    public void select3DError(String text) {
+        Select responseError = new Select(field_SelectResponse);
+        responseError.selectByValue(text);
+    }
+
 
     public void selectTitle(String text)
     {

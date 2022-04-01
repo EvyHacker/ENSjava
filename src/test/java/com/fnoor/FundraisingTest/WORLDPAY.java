@@ -399,4 +399,286 @@ public class WORLDPAY {
         Assert.assertTrue("CC type is incorrect/ not present", bodytextPaypal.contains("TEST: Paypal"));
 
     }
+
+    @Parameters({"worldpay3DSecureTestUpsell"})
+    @Test(groups = { "worldpay" })
+    public static void worldpay3DSecureTestUpsell(String testId) throws InterruptedException, IOException {
+        page.ensAuthTest();
+
+        driver.get("https://test.engagingnetworks.app/page/14534/donate/1?mode=DEMO");
+
+        fields.selectDonationAmt("other");
+        fields.selectDonationAmtOther("15.99");
+        fields.selectTitle("Ms");
+        fields.setFirstname("Worldpay");
+        fields.setLastname("Single3D");
+//		Call the createEmail function
+        String new_email = fields.createEmail(testId);
+        fields.setEmailAddress(new_email);
+
+        fields.submit();
+
+        fields.setAddress1("1 Hilltop");
+        fields.setCity("Baltimore");
+        fields.selectRegion("MD");
+        fields.setPostCode("20001");
+        fields.selectCountry("US");
+
+        fields.selectPaymentType("Visa");
+        fields.selectPayCurrency("USD");
+        fields.setCCName("3D");
+        fields.setCCNUmber("5454545454545454");
+        fields.setCCExpiry(new CharSequence[] {"12", "2023"});
+        fields.setCCV("123");
+
+        fields.submit();
+
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10 USD monthly gift instead?");
+        fields.clickUpsellYes();
+
+        //Validate 3D secure page
+        fields.waitForPageLoad();
+        Assert.assertTrue(driver.getCurrentUrl()
+                .contains("https://secure-test.worldpay.com/jsp/test/shopper/ThreeDResponseSimulator.jsp?orderCode="));
+        String securetext = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("3d Amount is incorrect/not present", securetext.contains("USD 10.00"));
+        WebElement submitButton = driver.findElement(By.xpath("//input[@class='lefty']"));
+        submitButton.click();
+        Thread.sleep(800);
+        fields.waitForPageLoad();
+        //		Assert that the payment was successful and the third page was reached
+
+        String myurl = driver.getCurrentUrl();
+        Assert.assertTrue("Urls are not the same", myurl.equals("https://test.engagingnetworks.app/page/14534/donate/3"));
+
+        fields.getSupporterTaxID();
+
+//		Get the details from the third page and Verify the fields
+        String bodytext = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("Campaign ID not present", bodytext.contains("10500"));
+        Assert.assertTrue("Gateway details are incorrect/not present", bodytext.contains("RBS Gateway"));
+        Assert.assertTrue("Donation Amount is incorrect/not present", bodytext.contains("$10.00"));
+        Assert.assertTrue("Currency is incorrect/not present", bodytext.contains("USD"));
+        Assert.assertTrue("Donation type is incorrect/not present", bodytext.contains("CREDIT_RECURRING"));
+        Assert.assertTrue("CC type is incorrect/ not present", bodytext.contains("TEST: VISA-SSL"));
+
+        page.getSupporterByEmail(FUNDRAISING_TEST="worldpay3DSecureTestUpsell", fields);
+        page.getSupporterById(FUNDRAISING_TEST="worldpay3DSecureTestUpsell", fields);
+    }
+
+    @Parameters({"worldpay3DRecurringUpsell"})
+    @Test(groups = { "worldpay" })
+    public static void worldpay3DRecurringUpsell(String testId) throws InterruptedException, IOException {
+        page.ensAuthTest();
+
+        driver.get("https://test.engagingnetworks.app/page/14538/donate/1?mode=DEMO");
+
+        fields.selectDonationAmt("other");
+        fields.selectDonationAmtOther("25.99");
+        fields.selectTitle("Ms");
+        fields.setFirstname("Worldpay");
+        fields.setLastname("Recurring3D");
+//		Call the createEmail function
+        String new_email = fields.createEmail(testId);
+        fields.setEmailAddress(new_email);
+
+        fields.submit();
+
+        fields.setAddress1("1 Hilltop");
+        fields.setCity("Baltimore");
+        fields.selectRegion("MD");
+        fields.setPostCode("20001");
+        fields.selectCountry("US");
+
+        fields.setRecurFreq("MONTHLY");
+        fields.setRecurDay("23");
+
+        fields.setCCName("3D");
+        fields.setCCNUmber("4222222222222220");
+        fields.setCCExpiry(new CharSequence[] {"12", "2023"});
+        fields.setCCV("123");
+
+        fields.submit();
+
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you make it a 25 USD monthly gift instead?");
+        fields.clickUpsellYes();
+
+        //Validate 3D secure page
+        fields.waitForPageLoad();
+        Assert.assertTrue(driver.getCurrentUrl()
+                .contains("https://secure-test.worldpay.com/jsp/test/shopper/ThreeDResponseSimulator.jsp?orderCode="));
+        String securetext = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("3d Amount is incorrect/not present", securetext.contains("USD 25.00"));
+        WebElement submitButton = driver.findElement(By.xpath("//input[@class='lefty']"));
+        submitButton.click();
+        Thread.sleep(1000);
+        fields.waitForPageLoad();
+
+        String myurl = driver.getCurrentUrl();
+        Assert.assertTrue("Urls are not the same", myurl.equals("https://test.engagingnetworks.app/page/14538/donate/3"));
+
+        fields.getSupporterTaxID();
+
+//		Get the details from the third page and Verify the fields
+        String bodytext = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("Campaign ID not present", bodytext.contains("10504"));
+        Assert.assertTrue("Gateway details are incorrect/not present", bodytext.contains("RBS Gateway"));
+        Assert.assertTrue("Donation Amount is incorrect/not present", bodytext.contains("$25.00"));
+        Assert.assertTrue("Currency is incorrect/not present", bodytext.contains("USD"));
+        Assert.assertTrue("Donation type is incorrect/not present", bodytext.contains("CREDIT_RECURRING"));
+        Assert.assertTrue("CC type is incorrect/ not present", bodytext.contains("TEST: VISA-SSL"));
+
+        page.getSupporterByEmail(FUNDRAISING_TEST="worldpay3DRecurringUpsell", fields);
+        page.getSupporterById(FUNDRAISING_TEST="worldpay3DRecurringUpsell", fields);
+    }
+
+    @Parameters({"worldpay3DSecureTestNoUpsell"})
+    @Test(groups = { "worldpay" })
+    public static void worldpay3DSecureTestNoUpsell(String testId) throws InterruptedException, IOException {
+        page.ensAuthTest();
+
+        driver.get("https://test.engagingnetworks.app/page/14534/donate/1?mode=DEMO");
+
+        fields.selectDonationAmt("other");
+        fields.selectDonationAmtOther("15.99");
+        fields.selectTitle("Ms");
+        fields.setFirstname("Worldpay");
+        fields.setLastname("Single3D");
+//		Call the createEmail function
+        String new_email = fields.createEmail(testId);
+        fields.setEmailAddress(new_email);
+
+        fields.submit();
+
+        fields.setAddress1("1 Hilltop");
+        fields.setCity("Baltimore");
+        fields.selectRegion("MD");
+        fields.setPostCode("20001");
+        fields.selectCountry("US");
+
+        fields.selectPaymentType("Visa");
+        fields.selectPayCurrency("USD");
+        fields.setCCName("3D");
+        fields.setCCNUmber("5454545454545454");
+        fields.setCCExpiry(new CharSequence[] {"12", "2023"});
+        fields.setCCV("123");
+
+        fields.submit();
+
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10 USD monthly gift instead?");
+        fields.clickUpsellNo();
+
+        //Validate 3D secure page
+        fields.waitForPageLoad();
+        Assert.assertTrue(driver.getCurrentUrl()
+                .contains("https://secure-test.worldpay.com/jsp/test/shopper/ThreeDResponseSimulator.jsp?orderCode="));
+        String securetext = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("3d Amount is incorrect/not present", securetext.contains("USD 15.99"));
+        WebElement submitButton = driver.findElement(By.xpath("//input[@class='lefty']"));
+        submitButton.click();
+        Thread.sleep(800);
+        fields.waitForPageLoad();
+        //		Assert that the payment was successful and the third page was reached
+
+        String myurl = driver.getCurrentUrl();
+        Assert.assertTrue("Urls are not the same", myurl.equals("https://test.engagingnetworks.app/page/14534/donate/3"));
+
+        fields.getSupporterTaxID();
+
+//		Get the details from the third page and Verify the fields
+        String bodytext = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("Campaign ID not present", bodytext.contains("10500"));
+        Assert.assertTrue("Gateway details are incorrect/not present", bodytext.contains("RBS Gateway"));
+        Assert.assertTrue("Donation Amount is incorrect/not present", bodytext.contains("$15.99"));
+        Assert.assertTrue("Currency is incorrect/not present", bodytext.contains("USD"));
+        Assert.assertTrue("Donation type is incorrect/not present", bodytext.contains("CREDIT_SINGLE"));
+        Assert.assertTrue("CC type is incorrect/ not present", bodytext.contains("TEST: VISA-SSL"));
+
+        page.getSupporterByEmail(FUNDRAISING_TEST="worldpay3DSecureTestNoUpsell", fields);
+        page.getSupporterById(FUNDRAISING_TEST="worldpay3DSecureTestNoUpsell", fields);
+    }
+
+    @Parameters({"worldpay3DSecureTestUpsellNegative"})
+    @Test(groups = { "worldpay" })
+    public static void worldpay3DSecureTestUpsellNegative(String testId) throws InterruptedException, IOException {
+        page.ensAuthTest();
+
+        driver.get("https://test.engagingnetworks.app/page/14534/donate/1?mode=DEMO");
+
+        fields.selectDonationAmt("other");
+        fields.selectDonationAmtOther("15.99");
+        fields.selectTitle("Ms");
+        fields.setFirstname("Worldpay");
+        fields.setLastname("Single3D");
+//		Call the createEmail function
+        String new_email = fields.createEmail(testId);
+        fields.setEmailAddress(new_email);
+
+        fields.submit();
+
+        fields.setAddress1("1 Hilltop");
+        fields.setCity("Baltimore");
+        fields.selectRegion("MD");
+        fields.setPostCode("20001");
+        fields.selectCountry("US");
+
+        fields.selectPaymentType("Visa");
+        fields.selectPayCurrency("USD");
+        fields.setCCName("3D");
+        fields.setCCNUmber("5454545454545454");
+        fields.setCCExpiry(new CharSequence[] {"12", "2023"});
+        fields.setCCV("123");
+
+        fields.submit();
+
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10 USD monthly gift instead?");
+        fields.clickUpsellYes();
+
+        //Validate 3D secure page
+        fields.waitForPageLoad();
+        Assert.assertTrue(driver.getCurrentUrl()
+                .contains("https://secure-test.worldpay.com/jsp/test/shopper/ThreeDResponseSimulator.jsp?orderCode="));
+        String securetext = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("3d Amount is incorrect/not present", securetext.contains("USD 10.00"));
+        fields.select3DError("3DERROR");
+        WebElement submitButton = driver.findElement(By.xpath("//input[@class='lefty']"));
+        submitButton.click();
+        Thread.sleep(800);
+        fields.waitForPageLoad();
+
+        fields.submit();
+
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10 USD monthly gift instead?");
+        fields.clickUpsellYes();
+
+        //Validate 3D secure page
+        fields.waitForPageLoad();
+        Assert.assertTrue(driver.getCurrentUrl()
+                .contains("https://secure-test.worldpay.com/jsp/test/shopper/ThreeDResponseSimulator.jsp?orderCode="));
+        Assert.assertTrue("3d Amount is incorrect/not present", securetext.contains("USD 10.00"));
+        WebElement reSubmitButton = driver.findElement(By.xpath("//input[@value='Submit']"));
+        reSubmitButton.click();
+        Thread.sleep(800);
+        fields.waitForPageLoad();
+
+        //		Assert that the payment was successful and the third page was reached
+
+        String myurl = driver.getCurrentUrl();
+        Assert.assertTrue("Urls are not the same", myurl.equals("https://test.engagingnetworks.app/page/14534/donate/3"));
+
+        fields.getSupporterTaxID();
+
+//		Get the details from the third page and Verify the fields
+        String bodytext = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("Campaign ID not present", bodytext.contains("10500"));
+        Assert.assertTrue("Gateway details are incorrect/not present", bodytext.contains("RBS Gateway"));
+        Assert.assertTrue("Donation Amount is incorrect/not present", bodytext.contains("$10.00"));
+        Assert.assertTrue("Currency is incorrect/not present", bodytext.contains("USD"));
+        Assert.assertTrue("Donation type is incorrect/not present", bodytext.contains("CREDIT_RECURRING"));
+        Assert.assertTrue("CC type is incorrect/ not present", bodytext.contains("TEST: VISA-SSL"));
+
+        page.getSupporterByEmail(FUNDRAISING_TEST="worldpay3DSecureTestUpsellNegative", fields);
+        page.getSupporterById(FUNDRAISING_TEST="worldpay3DSecureTestUpsellNegative", fields);
+    }
+
 }
