@@ -879,7 +879,7 @@ public class PAYSAFE {
 
         fields.submit();
 
-        fields.validateUsellAmount("Thank you! Before we process your donation, will you make it a 25 USD monthly gift instead?");
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you make it a 25.00 USD monthly gift instead?");
         fields.clickUpsellYes();
 
         //      Validate 3D transaction
