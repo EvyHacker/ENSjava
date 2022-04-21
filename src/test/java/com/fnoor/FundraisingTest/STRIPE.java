@@ -890,28 +890,29 @@ public class STRIPE {
 
         WebElement plaidContinue = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
-                        (By.xpath("//button[@id='aut-button']")));
+                       (By.xpath("//button[@id='aut-continue-button']")));
         Actions actions = new Actions(driver);
         actions.click(plaidContinue).perform();
-        WebElement wellsFargo = driver.findElement(By.xpath("//*[@id=\"aut-ins_4\"]/div/div/h2"));
+        WebElement wellsFargo = driver.findElement(By.xpath("//div[@data-institution='wells']"));
+                //(By.xpath("//*[@id=\"aut-ins_4\"]/div/div/h2"));
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", wellsFargo);
         Thread.sleep(2000);
-        WebElement userName = driver.findElement(By.xpath("//*[@id=\"aut-input-0\"]"));
+        WebElement userName = driver.findElement(By.xpath("//input[@id='username']"));
         userName.sendKeys("user_good");
-        WebElement userPassword = driver.findElement(By.xpath("//*[@id=\"aut-input-1\"]"));
+        WebElement userPassword = driver.findElement(By.xpath("//input[@id='password']"));
         userPassword.sendKeys("pass_good");
-        WebElement submitPlaid = driver.findElement(By.id("aut-button"));
+        WebElement submitPlaid = driver.findElement(By.id("aut-submit-button"));
         submitPlaid.click();
         Thread.sleep(2000);
         WebElement plaidChecking = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
-                        (By.xpath("//*[@id=\"aut-selection-0\"]/div/div/label")));
+                        (By.cssSelector("li:nth-of-type(1) > .AccountListItem__label > .deprecated-radio")));
         plaidChecking.click();
         Thread.sleep(2000);
-        WebElement continuePlaid = driver.findElement(By.xpath("//*[@id=\"aut-button\"]/span"));
+        WebElement continuePlaid = driver.findElement(By.id("aut-continue-button"));
         continuePlaid.click();
-        WebElement finishPlaid = driver.findElement(By.xpath("//*[@id=\"aut-button\"]/span/span"));
+        WebElement finishPlaid = driver.findElement(By.id("aut-continue-button"));
         finishPlaid.click();
         Thread.sleep(2000);
         driver.switchTo().defaultContent();
@@ -978,28 +979,29 @@ public class STRIPE {
 
         WebElement plaidContinue = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
-                        (By.xpath("//button[@id='aut-button']")));
+                        (By.xpath("//button[@id='aut-continue-button']")));
         Actions actions = new Actions(driver);
         actions.click(plaidContinue).perform();
-        WebElement wellsFargo = driver.findElement(By.xpath("//*[@id=\"aut-ins_4\"]/div/div/h2"));
+        WebElement wellsFargo = driver.findElement(By.xpath("//div[@data-institution='wells']"));
+        //(By.xpath("//*[@id=\"aut-ins_4\"]/div/div/h2"));
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", wellsFargo);
         Thread.sleep(2000);
-        WebElement userName = driver.findElement(By.xpath("//*[@id=\"aut-input-0\"]"));
+        WebElement userName = driver.findElement(By.xpath("//input[@id='username']"));
         userName.sendKeys("user_good");
-        WebElement userPassword = driver.findElement(By.xpath("//*[@id=\"aut-input-1\"]"));
+        WebElement userPassword = driver.findElement(By.xpath("//input[@id='password']"));
         userPassword.sendKeys("pass_good");
-        WebElement submitPlaid = driver.findElement(By.id("aut-button"));
+        WebElement submitPlaid = driver.findElement(By.id("aut-submit-button"));
         submitPlaid.click();
         Thread.sleep(2000);
         WebElement plaidChecking = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
-                        (By.xpath("//*[@id=\"aut-selection-0\"]/div/div/label")));
+                        (By.cssSelector("li:nth-of-type(1) > .AccountListItem__label > .deprecated-radio")));
         plaidChecking.click();
         Thread.sleep(2000);
-        WebElement continuePlaid = driver.findElement(By.xpath("//*[@id=\"aut-button\"]/span"));
+        WebElement continuePlaid = driver.findElement(By.id("aut-continue-button"));
         continuePlaid.click();
-        WebElement finishPlaid = driver.findElement(By.xpath("//*[@id=\"aut-button\"]/span/span"));
+        WebElement finishPlaid = driver.findElement(By.id("aut-continue-button"));
         finishPlaid.click();
         Thread.sleep(2000);
         driver.switchTo().defaultContent();
@@ -1060,28 +1062,29 @@ public class STRIPE {
 
         WebElement plaidContinue = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
-                        (By.xpath("//button[@id='aut-button']")));
+                        (By.xpath("//button[@id='aut-continue-button']")));
         Actions actions = new Actions(driver);
         actions.click(plaidContinue).perform();
-        WebElement wellsFargo = driver.findElement(By.xpath("//*[@id=\"aut-ins_4\"]/div/div/h2"));
+        WebElement wellsFargo = driver.findElement(By.xpath("//div[@data-institution='wells']"));
+        //(By.xpath("//*[@id=\"aut-ins_4\"]/div/div/h2"));
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", wellsFargo);
         Thread.sleep(2000);
-        WebElement userName = driver.findElement(By.xpath("//*[@id=\"aut-input-0\"]"));
+        WebElement userName = driver.findElement(By.xpath("//input[@id='username']"));
         userName.sendKeys("user_good");
-        WebElement userPassword = driver.findElement(By.xpath("//*[@id=\"aut-input-1\"]"));
+        WebElement userPassword = driver.findElement(By.xpath("//input[@id='password']"));
         userPassword.sendKeys("pass_good");
-        WebElement submitPlaid = driver.findElement(By.id("aut-button"));
+        WebElement submitPlaid = driver.findElement(By.id("aut-submit-button"));
         submitPlaid.click();
         Thread.sleep(2000);
         WebElement plaidChecking = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
-                        (By.xpath("//*[@id=\"aut-selection-0\"]/div/div/label")));
+                        (By.cssSelector("li:nth-of-type(1) > .AccountListItem__label > .deprecated-radio")));
         plaidChecking.click();
         Thread.sleep(2000);
-        WebElement continuePlaid = driver.findElement(By.xpath("//*[@id=\"aut-button\"]/span"));
+        WebElement continuePlaid = driver.findElement(By.id("aut-continue-button"));
         continuePlaid.click();
-        WebElement finishPlaid = driver.findElement(By.xpath("//*[@id=\"aut-button\"]/span/span"));
+        WebElement finishPlaid = driver.findElement(By.id("aut-continue-button"));
         finishPlaid.click();
         Thread.sleep(2000);
         driver.switchTo().defaultContent();
