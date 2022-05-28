@@ -7,15 +7,13 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
 
 public class PAYPAL {
 
@@ -27,9 +25,9 @@ public class PAYPAL {
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun=true)
     public void setUp(String browser) throws MalformedURLException {
+
         driver = page.createInstance(browser);
         fields = PageFactory.initElements(driver, PageFields.class);
-
     }
 
     @AfterMethod(alwaysRun = true)
@@ -383,7 +381,7 @@ public class PAYPAL {
             throw e;
         }
 
-        Thread.sleep(10000);
+        fields.waitForURLToChange("https://test.engagingnetworks.app/page/13376/donate/3");
         driver.switchTo().defaultContent();
         String myurl = driver.getCurrentUrl();
         Assert.assertTrue("Urls are not the same",
@@ -464,12 +462,12 @@ public class PAYPAL {
             System.err.println(e.getMessage());
         }
 
-        fields.waitForPageLoadPayPal();
-
-        //		Assert that the payment was successful and the third page was reached
-        Thread.sleep(8000);
+      //  fields.waitForPageLoadPayPal();
+        fields.waitForURLToChange("https://test.engagingnetworks.app/page/13376/donate/3");
+        driver.switchTo().defaultContent();
+        String myurl = driver.getCurrentUrl();
         Assert.assertTrue("Urls are not the same",
-                driver.getCurrentUrl().equals("https://test.engagingnetworks.app/page/13376/donate/3"));
+                myurl.equals("https://test.engagingnetworks.app/page/13376/donate/3"));
 
         fields.getSupporterTaxID();
 
@@ -489,7 +487,7 @@ public class PAYPAL {
     @Parameters({"paypalCardinalComRecurring3D"})
     @Test(groups = { "paypal" })
     public static void paypalCardinalComRecurring3D(String testId) throws InterruptedException, IOException {
-       // page.ensAuthTest();
+        page.ensAuthTest();
         driver.get("https://test.engagingnetworks.app/page/13376/donate/1?mode=DEMO");
 
         fields.selectDonationAmt("15");
@@ -541,11 +539,20 @@ public class PAYPAL {
                         (By.name("UsernamePasswordEntry")));
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", mySubmitDynamicElement);
-        Thread.sleep(2000);
-        fields.waitForPageLoad();
 
+        try{
+            JavascriptExecutor js = (JavascriptExecutor)driver;
+            js.executeScript("arguments[0].click();", mySubmitDynamicElement);
+        }catch(Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+
+        driver.switchTo().defaultContent();
+        fields.waitForURLToChange("https://test.engagingnetworks.app/page/13376/donate/3");
         String myurl = driver.getCurrentUrl();
-        Assert.assertTrue("Urls are not the same", myurl.equals("https://test.engagingnetworks.app/page/13376/donate/3"));
+        Assert.assertTrue("Urls are not the same",
+                myurl.equals("https://test.engagingnetworks.app/page/13376/donate/3"));
 
         fields.getSupporterTaxID();
 
@@ -558,8 +565,8 @@ public class PAYPAL {
         Assert.assertTrue("Donation type is incorrect/not present", bodytext.contains("CREDIT_RECURRING"));
         Assert.assertTrue("CC type is incorrect/ not present", bodytext.contains("TEST: Visa"));
 
-//        page.getSupporterByEmail(FUNDRAISING_TEST="paypalCardinalComRecurring3D", fields);
-//        page.getSupporterById(FUNDRAISING_TEST="paypalCardinalComRecurring3D", fields);
+        page.getSupporterByEmail(FUNDRAISING_TEST="paypalCardinalComRecurring3D", fields);
+        page.getSupporterById(FUNDRAISING_TEST="paypalCardinalComRecurring3D", fields);
     }
 
     @Parameters({"stripeViaPaypalSingle"})
