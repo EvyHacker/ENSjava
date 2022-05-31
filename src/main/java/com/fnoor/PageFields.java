@@ -2154,7 +2154,7 @@ public class PageFields {
         }
     }
     public void waitForURLToChange(String expectedurl) {
-        WebDriverWait wait = new WebDriverWait(driver, 8000);
+        WebDriverWait wait = new WebDriverWait(driver, 10000);
         wait.until(ExpectedConditions.urlContains(expectedurl));
     }
 
