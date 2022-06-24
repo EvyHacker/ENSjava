@@ -556,11 +556,11 @@ public class STRIPE {
         fields.submit();
         fields.waitForPageLoad();
         WebDriverWait wait = new WebDriverWait(driver, 60);
-        fields.waitForURLToChange("https://stripe.com/sources/test_source?amount=1500&currency=eur");
+        fields.waitForURLToChange("https://stripe.com/sources/test_source?");
 
         // Validate fail test payment
         Assert.assertTrue("Urls are not the same, payment didn't go through",
-                driver.getCurrentUrl().contains("https://stripe.com/sources/test_source?amount=1500&currency=eur"));
+                driver.getCurrentUrl().contains("https://stripe.com/sources/test_source?"));
         WebElement fail = driver.findElement(By.xpath("//*[contains(text(), 'Fail Test Payment')]"));
         fail.click();
         fields.waitForURLToChange("https://test.engagingnetworks.app/page/13323/donate/2?val" );
@@ -583,7 +583,7 @@ public class STRIPE {
 
         driver.switchTo().defaultContent();
         fields.submit();
-        fields.waitForURLToChange("https://stripe.com/sources/test_source?amount=1500&currency=eur");
+        fields.waitForURLToChange("https://stripe.com/sources/test_source?");
 
         // Validate bank payment
         Assert.assertTrue("Urls are not the same", driver.getCurrentUrl()
@@ -646,11 +646,11 @@ public class STRIPE {
         driver.switchTo().defaultContent();
         fields.submit();
         fields.waitForPageLoad();
-        fields.waitForURLToChange("https://stripe.com/sources/test_source?amount=1500&currency=eur");
+        fields.waitForURLToChange("https://stripe.com/sources/test_source?");
 
         // Validate fail test payment
         Assert.assertTrue("Urls are not the same, payment didn't go through",
-                driver.getCurrentUrl().contains("https://stripe.com/sources/test_source?amount=1500&currency=eur"));
+                driver.getCurrentUrl().contains("https://stripe.com/sources/test_source?"));
         WebElement fail = driver.findElement(By.xpath("//*[contains(text(), 'Fail Test Payment')]"));
         fail.click();
         fields.waitForURLToChange("https://test.engagingnetworks.app/page/13323/donate/2?val" );
@@ -678,7 +678,7 @@ public class STRIPE {
 
         // Validate bank payment
         Assert.assertTrue("Urls are not the same", driver.getCurrentUrl()
-                .contains("https://stripe.com/sources/test_source?amount=1500"));
+                .contains("https://stripe.com/sources/test_source?"));
         WebElement authorize = driver.findElement(By.xpath("//*[contains(text(), 'Authorize Test Payment')]"));
         authorize.click();
         fields.waitForPageLoad();

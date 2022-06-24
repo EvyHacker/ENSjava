@@ -35,7 +35,7 @@
                     <include name="stripeRecurring3D" />
                     <include name="stripeSEPAsingle" />
                     <include name="stripeSEPArecurring" />
-                    <include name="stripeIDEALsingleABN" />
+<!--                    <include name="stripeIDEALsingleABN" />-->
                     <include name="stripeIDEALsingleASNRefund" />
                     <include name="stripeIDEALsingleDtDFees" />
                     <include name="stripePlaidSingle" />

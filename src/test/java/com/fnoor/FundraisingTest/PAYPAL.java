@@ -549,6 +549,7 @@ public class PAYPAL {
 
 
         driver.switchTo().defaultContent();
+        Thread.sleep(800);
         fields.waitForURLToChange("https://test.engagingnetworks.app/page/13376/donate/3");
         String myurl = driver.getCurrentUrl();
         Assert.assertTrue("Urls are not the same",
