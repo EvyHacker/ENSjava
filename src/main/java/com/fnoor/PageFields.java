@@ -133,8 +133,6 @@ public class PageFields {
     @FindBy(id = "en__field_transaction_othamt2") WebElement field_OtherAmt2;
     @FindBy(id = "en__field_transaction_othamt3") WebElement field_OtherAmt3;
     @FindBy(id = "en__field_transaction_othamt4") WebElement field_OtherAmt4;
-    @FindBy(id = "en__field_supporter_NOT_TAGGED_11") WebElement field_OtherAmt5;
-    @FindBy(id = "en__field_supporter_NOT_TAGGED_12") WebElement field_OtherAmt6;
     @FindBy(id = "en__field_supporter_appealCode") WebElement field_Appealcode;
     @FindBy(id = "en__field_transaction_dirgift") WebElement field_Directgift;
     @FindBy(id = "en__field_transaction_comments") WebElement field_Addcomments;
@@ -262,39 +260,6 @@ public class PageFields {
     @FindBy(css = "input[id*='ticketType_1_tickets_0_registrants_0_emailAddress']") WebElement event_attendee2_email;
     @FindBy(name = "event.ticketType.0.quantity") WebElement event_ticketCount;
     @FindBy(name = "event.ticketType.1.quantity") WebElement event_ticketCounts;
-
-    @FindBy(css = "div[data-view='pageEventTickets']") WebElement event_adminTickets;
-    @FindBy(xpath = "(//div[@class='ticketRow__field ticketRow__field--edit'])[1]") WebElement event_adminTicket;
-    @FindBy(xpath = "(//input[@value='A13_gen'])[1]") WebElement event_adminTicketName;
-    @FindBy(xpath = "//div[@class='button ticketUpdate']") WebElement event_adminUpdateTicket;
-    @FindBy(xpath = " //li[@class='ticketValidation__item']") WebElement event_adminTicketNameCharError;
-
-    public void clickTicketsSettings() {
-        event_adminTickets.click();
-
-    }
-
-    public void validateTicketNameChars( String text){
-        String[] specialCharacters= {" !#$%&'()*+,-./:;<=>?@[]^_`{|}~"};
-        String str[]=specialCharacters.toString().split("");
-        int count=0;
-        for ( String x : str){
-
-            event_adminTicket.click();
-            event_adminTicketName.clear();
-            event_adminTicketName.sendKeys(text + specialCharacters);
-            event_adminUpdateTicket.click();
-            if (event_adminTicketNameCharError.getText().contains(""))
-            {
-                System.out.println("Ticket Name: " + event_adminTicketName.getText());
-                break;
-            }
-        }
-
-        System.out.println("Your Ticket Name contains one of special chars.");
-    }
-
-
 
     //	ECOMMERCE GADGET FIELDS
     @FindBy(css = ".enList__column.enList__column--name") List<WebElement> ecommerce_gadget_list;
@@ -1820,14 +1785,6 @@ public class PageFields {
         field_OtherAmt4.sendKeys(text);
     }
 
-    public void setOtherAmt5(String text) {
-        field_OtherAmt5.sendKeys(text);
-    }
-
-    public void setOtherAmt6(String text) {
-        field_OtherAmt6.sendKeys(text);
-    }
-
     public void setAppealCode(String text) {
         field_Appealcode.sendKeys(text);
     }
@@ -1888,11 +1845,6 @@ public class PageFields {
         currencydropdown.selectByValue(text);
     }
 
-    public void setPayCurrency(String text)
-    {
-        field_PaymentCurrency.sendKeys(text);
-    }
-
     public void selectPaymentType(String text)
     {
         Select paymenttypedropdown = new Select(field_PaymentType);
@@ -1909,7 +1861,6 @@ public class PageFields {
         Select bankacctypedropdown = new Select(field_BankAccType);
         bankacctypedropdown.selectByValue(text);
     }
-
 
     public void submit() throws InterruptedException {
 //		field_Submit.click();
@@ -2154,7 +2105,7 @@ public class PageFields {
         }
     }
     public void waitForURLToChange(String expectedurl) {
-        WebDriverWait wait = new WebDriverWait(driver, 8000);
+        WebDriverWait wait = new WebDriverWait(driver, 120);
         wait.until(ExpectedConditions.urlContains(expectedurl));
     }
 
@@ -2166,7 +2117,7 @@ public class PageFields {
                     }
                 };
         try {
-            WebDriverWait wait = new WebDriverWait(driver, 8000);
+            WebDriverWait wait = new WebDriverWait(driver, 300);
             wait.until(expectation);
         } catch (Throwable error) {
             Assert.fail("Timeout waiting for Page Load Request to complete.");

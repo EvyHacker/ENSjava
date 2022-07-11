@@ -45,9 +45,6 @@
                                     <groups>EVENTS</groups>
                                     <groups>PAGE</groups>
                                     <groups>SF</groups>
-
-                                    <groups>GATEWAY</groups>
-                                    <groups>JIRA_EVENTS</groups>
                                 </configuration>
             </plugin>
             <plugin>

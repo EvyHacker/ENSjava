@@ -554,19 +554,13 @@ public class STRIPE {
         Thread.sleep(2000);
         driver.switchTo().defaultContent();
         fields.submit();
-        fields.waitForPageLoad();
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        fields.waitForURLToChange("https://stripe.com/sources/test_source?");
 
         // Validate fail test payment
         Assert.assertTrue("Urls are not the same, payment didn't go through",
-                driver.getCurrentUrl().contains("https://stripe.com/sources/test_source?"));
-        WebElement fail = driver.findElement(By.xpath("//*[contains(text(), 'Fail Test Payment')]"));
+                driver.getCurrentUrl().contains("https://stripe.com/"));
+        WebElement fail = driver.findElement(By.xpath("//a[normalize-space()='Fail Test Payment']"));
         fail.click();
         fields.waitForURLToChange("https://test.engagingnetworks.app/page/13323/donate/2?val" );
-//        String error = driver.findElement(By.className("en__error")).getText();
-//        Assert.assertTrue("Urls are not the same",
-//                error.equals("This transaction has failed as there has been an error in processing your payment."));
         fields.selectPaymentType("iDEAL");
         Thread.sleep(2000);
         driver.switchTo().frame(0);
@@ -583,12 +577,10 @@ public class STRIPE {
 
         driver.switchTo().defaultContent();
         fields.submit();
-        fields.waitForURLToChange("https://stripe.com/sources/test_source?");
-
         // Validate bank payment
         Assert.assertTrue("Urls are not the same", driver.getCurrentUrl()
-                .contains("https://stripe.com/sources/test_source?amount=1500&currency=eur"));
-        WebElement authorize = driver.findElement(By.xpath("//*[contains(text(), 'Authorize Test Payment')]"));
+                .contains("https://stripe.com/"));
+        WebElement authorize = driver.findElement(By.xpath("//a[normalize-space()='Authorize Test Payment']"));
         authorize.click();
 
         fields.waitForPageLoad();
@@ -645,18 +637,13 @@ public class STRIPE {
         Thread.sleep(2000);
         driver.switchTo().defaultContent();
         fields.submit();
-        fields.waitForPageLoad();
-        fields.waitForURLToChange("https://stripe.com/sources/test_source?");
 
         // Validate fail test payment
         Assert.assertTrue("Urls are not the same, payment didn't go through",
-                driver.getCurrentUrl().contains("https://stripe.com/sources/test_source?"));
-        WebElement fail = driver.findElement(By.xpath("//*[contains(text(), 'Fail Test Payment')]"));
+                driver.getCurrentUrl().contains("https://stripe.com/"));
+        WebElement fail = driver.findElement(By.xpath("//a[normalize-space()='Fail Test Payment']"));
         fail.click();
         fields.waitForURLToChange("https://test.engagingnetworks.app/page/13323/donate/2?val" );
-//        String error = driver.findElement(By.className("en__error")).getText();
-//        Assert.assertTrue("Urls are not the same",
-//                error.equals("This transaction has failed as there has been an error in processing your payment."));
         fields.selectPaymentType("iDEAL");
         Thread.sleep(4000);
         driver.switchTo().frame(0);
@@ -674,12 +661,11 @@ public class STRIPE {
         driver.switchTo().defaultContent();
         fields.submit();
         Thread.sleep(3000);
-        fields.waitForPageLoad();
 
         // Validate bank payment
         Assert.assertTrue("Urls are not the same", driver.getCurrentUrl()
-                .contains("https://stripe.com/sources/test_source?"));
-        WebElement authorize = driver.findElement(By.xpath("//*[contains(text(), 'Authorize Test Payment')]"));
+                .contains("https://stripe.com/"));
+        WebElement authorize = driver.findElement(By.xpath("//a[normalize-space()='Authorize Test Payment']"));
         authorize.click();
         fields.waitForPageLoad();
         Thread.sleep(2000);
@@ -795,20 +781,15 @@ public class STRIPE {
         Thread.sleep(2000);
         driver.switchTo().defaultContent();
         fields.clickFeechekbox();
-        fields.submit();
-        fields.waitForPageLoad();
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        fields.waitForURLToChange("https://stripe.com/sources/test_source?amount=2500&currency=eur");
+        fields.submit();;
 
         // Validate fail test payment
         Assert.assertTrue("Urls are not the same, payment didn't go through",
-                driver.getCurrentUrl().contains("https://stripe.com/sources/test_source?amount=2500&currency=eur"));
-        WebElement fail = driver.findElement(By.xpath("//*[contains(text(), 'Fail Test Payment')]"));
+                driver.getCurrentUrl().contains("https://stripe.com/"));
+        WebElement fail = driver.findElement(By.xpath("//a[normalize-space()='Fail Test Payment']"));
         fail.click();
         fields.waitForURLToChange("https://test.engagingnetworks.app/page/13865/donate/2?val" );
-//        String error = driver.findElement(By.className("en__error")).getText();
-//        Assert.assertTrue("Urls are not the same",
-//                error.equals("This transaction has failed as there has been an error in processing your payment."));
+
         fields.selectPaymentType("iDEAL");
         Thread.sleep(2000);
         driver.switchTo().frame(0);
@@ -822,15 +803,14 @@ public class STRIPE {
         } catch (StaleElementReferenceException e) {
             System.err.println(e.getMessage());
         }
-
         driver.switchTo().defaultContent();
         fields.submit();
-        fields.waitForURLToChange("https://stripe.com/sources/test_source?amount=2500&currency=eur");
+        Thread.sleep(2000);
 
         // Validate bank payment
         Assert.assertTrue("Urls are not the same", driver.getCurrentUrl()
-                .contains("https://stripe.com/sources/test_source?amount=2500&currency=eur"));
-        WebElement authorize = driver.findElement(By.xpath("//*[contains(text(), 'Authorize Test Payment')]"));
+                .contains("https://stripe.com/"));
+        WebElement authorize = driver.findElement(By.xpath("//a[normalize-space()='Authorize Test Payment']"));
         authorize.click();
 
         fields.waitForPageLoad();
@@ -890,13 +870,10 @@ public class STRIPE {
 
         WebElement plaidContinue = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
-                       (By.xpath("//button[@id='aut-button']")));
+                        (By.xpath("//button[@id='aut-button']")));
         Actions actions = new Actions(driver);
         actions.click(plaidContinue).perform();
-        WebElement wellsFargo = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated
-                        (By.xpath("//*[@id=\"aut-ins_4\"]")));
-                //(By.xpath("//*[@id=\"aut-ins_4\"]/div/div/h2"));
+        WebElement wellsFargo = driver.findElement(By.xpath("//*[@id=\"aut-ins_4\"]/div/div/h2"));
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", wellsFargo);
         Thread.sleep(2000);
@@ -909,12 +886,12 @@ public class STRIPE {
         Thread.sleep(2000);
         WebElement plaidChecking = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
-                        (By.xpath("//*[@id=\"aut-selection-0\"]/div/div/label/div/div[1]")));
+                        (By.xpath("//*[@id=\"aut-selection-0\"]/div/div/label")));
         plaidChecking.click();
         Thread.sleep(2000);
-        WebElement continuePlaid = driver.findElement(By.id("aut-button"));
+        WebElement continuePlaid = driver.findElement(By.xpath("//*[@id=\"aut-button\"]/span"));
         continuePlaid.click();
-        WebElement finishPlaid = driver.findElement(By.id("aut-button"));
+        WebElement finishPlaid = driver.findElement(By.xpath("//*[@id=\"aut-button\"]/span/span"));
         finishPlaid.click();
         Thread.sleep(2000);
         driver.switchTo().defaultContent();
@@ -984,10 +961,7 @@ public class STRIPE {
                         (By.xpath("//button[@id='aut-button']")));
         Actions actions = new Actions(driver);
         actions.click(plaidContinue).perform();
-        WebElement wellsFargo = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated
-                        (By.xpath("//*[@id=\"aut-ins_4\"]")));
-        //(By.xpath("//*[@id=\"aut-ins_4\"]/div/div/h2"));
+        WebElement wellsFargo = driver.findElement(By.xpath("//*[@id=\"aut-ins_4\"]/div/div/h2"));
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", wellsFargo);
         Thread.sleep(2000);
@@ -1000,12 +974,12 @@ public class STRIPE {
         Thread.sleep(2000);
         WebElement plaidChecking = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
-                        (By.xpath("//*[@id=\"aut-selection-0\"]/div/div/label/div/div[1]")));
+                        (By.xpath("//*[@id=\"aut-selection-0\"]/div/div/label")));
         plaidChecking.click();
         Thread.sleep(2000);
-        WebElement continuePlaid = driver.findElement(By.id("aut-button"));
+        WebElement continuePlaid = driver.findElement(By.xpath("//*[@id=\"aut-button\"]/span"));
         continuePlaid.click();
-        WebElement finishPlaid = driver.findElement(By.id("aut-button"));
+        WebElement finishPlaid = driver.findElement(By.xpath("//*[@id=\"aut-button\"]/span/span"));
         finishPlaid.click();
         Thread.sleep(2000);
         driver.switchTo().defaultContent();
@@ -1069,10 +1043,7 @@ public class STRIPE {
                         (By.xpath("//button[@id='aut-button']")));
         Actions actions = new Actions(driver);
         actions.click(plaidContinue).perform();
-        WebElement wellsFargo = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated
-                        (By.xpath("//*[@id=\"aut-ins_4\"]")));
-        //(By.xpath("//*[@id=\"aut-ins_4\"]/div/div/h2"));
+        WebElement wellsFargo = driver.findElement(By.xpath("//*[@id=\"aut-ins_4\"]/div/div/h2"));
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", wellsFargo);
         Thread.sleep(2000);
@@ -1085,12 +1056,12 @@ public class STRIPE {
         Thread.sleep(2000);
         WebElement plaidChecking = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated
-                        (By.xpath("//*[@id=\"aut-selection-0\"]/div/div/label/div/div[1]")));
+                        (By.xpath("//*[@id=\"aut-selection-0\"]/div/div/label")));
         plaidChecking.click();
         Thread.sleep(2000);
-        WebElement continuePlaid = driver.findElement(By.id("aut-button"));
+        WebElement continuePlaid = driver.findElement(By.xpath("//*[@id=\"aut-button\"]/span"));
         continuePlaid.click();
-        WebElement finishPlaid = driver.findElement(By.id("aut-button"));
+        WebElement finishPlaid = driver.findElement(By.xpath("//*[@id=\"aut-button\"]/span/span"));
         finishPlaid.click();
         Thread.sleep(2000);
         driver.switchTo().defaultContent();

@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.json.JSONArray;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,10 +24,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static com.fnoor.PageFields.*;
+import static com.fnoor.SFpageFields.*;
 
 public class FundraisingPageDriver {
 
@@ -414,31 +417,6 @@ public class FundraisingPageDriver {
 
     @AfterTest(alwaysRun = true)
     public static void getSupporterByIdSeconds(String testId, PageFields fields) throws IOException, InterruptedException {
-        System.out.println("In after class getSupporterById:");
-        HttpClient client = HttpClientBuilder.create().build();
-        supporterEmail = fields.createEmailSeconds(testId);
-        supporterTaxId = fields.getSupporterTaxID();
-
-        HttpGet get = new HttpGet(SERVICE_BASEURL + "/supporter/" + supporterId + "/transactions/" + supporterTaxId);
-
-        System.out.println("url: " + get);
-        get.setHeader("Content-Type", "application/json");
-        get.setHeader("ens-auth-token", ens_auth_token);
-
-        HttpResponse response = client.execute(get);
-        int status = response.getStatusLine().getStatusCode();
-        if (status != HTTP_STATUS_OK) {
-            throw new IOException("Unable to authenticate. Received invalid http status=" + status);
-        }
-        String jsonResponse = IOUtils.toString(response.getEntity().getContent(), "UTF-8");
-        System.out.println("RESPONSE as String(getSupporterById): " + jsonResponse);
-
-        System.out.println("Status getSupporterById: " + status);
-
-    }
-
-    @AfterTest(alwaysRun = true)
-    public static void getMonthlkyRecurTrxns(String testId, PageFields fields) throws IOException, InterruptedException {
         System.out.println("In after class getSupporterById:");
         HttpClient client = HttpClientBuilder.create().build();
         supporterEmail = fields.createEmailSeconds(testId);
