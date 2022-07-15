@@ -2117,7 +2117,7 @@ public class PageFields {
                     }
                 };
         try {
-            WebDriverWait wait = new WebDriverWait(driver, 300);
+            WebDriverWait wait = new WebDriverWait(driver, 3000);
             wait.until(expectation);
         } catch (Throwable error) {
             Assert.fail("Timeout waiting for Page Load Request to complete.");

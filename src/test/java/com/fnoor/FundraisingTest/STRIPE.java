@@ -556,6 +556,7 @@ public class STRIPE {
         fields.submit();
 
         // Validate fail test payment
+        Thread.sleep(4000);
         Assert.assertTrue("Urls are not the same, payment didn't go through",
                 driver.getCurrentUrl().contains("https://stripe.com/"));
         WebElement fail = driver.findElement(By.xpath("//a[normalize-space()='Fail Test Payment']"));
@@ -639,13 +640,15 @@ public class STRIPE {
         fields.submit();
 
         // Validate fail test payment
+        Thread.sleep(4000);
         Assert.assertTrue("Urls are not the same, payment didn't go through",
                 driver.getCurrentUrl().contains("https://stripe.com/"));
         WebElement fail = driver.findElement(By.xpath("//a[normalize-space()='Fail Test Payment']"));
         fail.click();
+        Thread.sleep(4000);
         fields.waitForURLToChange("https://test.engagingnetworks.app/page/13323/donate/2?val" );
         fields.selectPaymentType("iDEAL");
-        Thread.sleep(4000);
+
         driver.switchTo().frame(0);
         try{
             WebElement idealSelect1 = (new WebDriverWait(driver, 20))

@@ -3,10 +3,8 @@ package com.fnoor.FundraisingTest;
 import com.fnoor.FundraisingPageDriver;
 import com.fnoor.PageFields;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -681,4 +679,330 @@ public class WORLDPAY {
         page.getSupporterById(FUNDRAISING_TEST="worldpay3DSecureTestUpsellNegative", fields);
     }
 
+    @Parameters({"worldpay3DS1TestUpsell"})
+    @Test(groups = { "worldpay" })
+    public static void worldpay3DS1TestUpsell(String testId) throws InterruptedException, IOException {
+        page.ensAuthTest();
+
+        driver.get("https://test.engagingnetworks.app/page/14750/donate/1");
+
+        fields.selectDonationAmt("other");
+        fields.selectDonationAmtOther("15.99");
+        fields.selectTitle("Ms");
+        fields.setFirstname("Worldpay");
+        fields.setLastname("Single3DS1");
+//		Call the createEmail function
+        String new_email = fields.createEmail(testId);
+        fields.setEmailAddress(new_email);
+
+        fields.submit();
+
+        fields.setAddress1("1 Hilltop");
+        fields.setCity("Baltimore");
+        fields.selectRegion("MD");
+        fields.setPostCode("20001");
+        fields.selectCountry("US");
+
+        fields.selectPaymentType("Visa");
+        fields.selectPayCurrency("USD");
+        fields.setCCName("Wsingle3DS1");
+        fields.setCCNUmber("4000000000000002");
+        fields.setCCExpiry(new CharSequence[] {"12", "2023"});
+        fields.setCCV("123");
+
+        fields.submit();
+        //Thread.sleep(2000);
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10.00 USD monthly gift instead?");
+        fields.clickUpsellYes();
+
+        //Validate 3D secure page
+        Thread.sleep(6000);
+        fields.waitForPageLoad();
+        Assert.assertTrue(driver.getCurrentUrl()
+                .contains("https://centinelapistag.cardinalcommerce.com/"));
+        driver.switchTo().frame(0);
+        WebElement cardinalPassword = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated
+                        (By.id("password")));
+        cardinalPassword.sendKeys("1234");
+        WebElement submitButton = driver.findElement(By.name("UsernamePasswordEntry"));
+        submitButton.click();
+        Thread.sleep(800);
+        driver.switchTo().defaultContent();
+        fields.waitForPageLoad();
+        //		Assert that the payment was successful and the third page was reached
+
+        String myurl = driver.getCurrentUrl();
+        Assert.assertTrue("Urls are not the same", myurl.equals("https://test.engagingnetworks.app/page/14750/donate/3"));
+
+        fields.getSupporterTaxID();
+
+//		Get the details from the third page and Verify the fields
+        String bodytext = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("Campaign ID not present", bodytext.contains("10745"));
+        Assert.assertTrue("Gateway details are incorrect/not present", bodytext.contains("RBS Gateway"));
+        Assert.assertTrue("Donation Amount is incorrect/not present", bodytext.contains("$10.00"));
+        Assert.assertTrue("Currency is incorrect/not present", bodytext.contains("USD"));
+        Assert.assertTrue("Donation type is incorrect/not present", bodytext.contains("CREDIT_RECURRING"));
+        Assert.assertTrue("CC type is incorrect/ not present", bodytext.contains("TEST: VISA-SSL"));
+
+        page.getSupporterByEmail(FUNDRAISING_TEST="worldpay3DS1TestUpsell", fields);
+        page.getSupporterById(FUNDRAISING_TEST="worldpay3DS1TestUpsell", fields);
+    }
+
+    @Parameters({"worldpay3DS2TestUpsell"})
+    @Test(groups = { "worldpay" })
+    public static void worldpay3DS2TestUpsell(String testId) throws InterruptedException, IOException {
+        page.ensAuthTest();
+
+        driver.get("https://test.engagingnetworks.app/page/14750/donate/1");
+
+        fields.selectDonationAmt("other");
+        fields.selectDonationAmtOther("15.99");
+        fields.selectTitle("Ms");
+        fields.setFirstname("Worldpay");
+        fields.setLastname("Single3DS1");
+//		Call the createEmail function
+        String new_email = fields.createEmail(testId);
+        fields.setEmailAddress(new_email);
+
+        fields.submit();
+
+        fields.setAddress1("1 Hilltop");
+        fields.setCity("Baltimore");
+        fields.selectRegion("MD");
+        fields.setPostCode("20001");
+        fields.selectCountry("US");
+
+        fields.selectPaymentType("Visa");
+        fields.selectPayCurrency("USD");
+        fields.setCCName("Wsingle3DS1");
+        fields.setCCNUmber("4000000000001091");
+        fields.setCCExpiry(new CharSequence[] {"12", "2023"});
+        fields.setCCV("123");
+
+        fields.submit();
+        //Thread.sleep(2000);
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10.00 USD monthly gift instead?");
+        fields.clickUpsellYes();
+
+        //Validate 3D secure page
+        Thread.sleep(6000);
+        fields.waitForPageLoad();
+        Assert.assertTrue(driver.getCurrentUrl()
+                .contains("https://centinelapistag.cardinalcommerce.com/"));
+        driver.switchTo().frame(0);
+        WebElement cancelButton = driver.findElement(By.name("cancel"));
+        cancelButton.click();
+        Thread.sleep(6000);
+        driver.switchTo().defaultContent();
+        fields.waitForPageLoad();
+        fields.submit();
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you start a 10.00 USD monthly gift instead?");
+        fields.clickUpsellYes();
+
+        //Validate 3D secure page
+        Thread.sleep(6000);
+        fields.waitForPageLoad();
+        Assert.assertTrue(driver.getCurrentUrl()
+                .contains("https://centinelapistag.cardinalcommerce.com/"));
+        driver.switchTo().frame(0);
+
+        WebElement cardinalPassword = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated
+                        (By.name("challengeDataEntry")));
+        cardinalPassword.sendKeys("1234");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(cardinalPassword).click().perform();
+        actions.sendKeys(Keys.ENTER).perform();
+
+        Thread.sleep(800);
+        driver.switchTo().defaultContent();
+        fields.waitForPageLoad();
+
+        //		Assert that the payment was successful and the third page was reached
+
+        String myurl = driver.getCurrentUrl();
+        Assert.assertTrue("Urls are not the same", myurl.equals("https://test.engagingnetworks.app/page/14750/donate/3"));
+
+        fields.getSupporterTaxID();
+
+//		Get the details from the third page and Verify the fields
+        String bodytext = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("Campaign ID not present", bodytext.contains("10745"));
+        Assert.assertTrue("Gateway details are incorrect/not present", bodytext.contains("RBS Gateway"));
+        Assert.assertTrue("Donation Amount is incorrect/not present", bodytext.contains("$10.00"));
+        Assert.assertTrue("Currency is incorrect/not present", bodytext.contains("USD"));
+        Assert.assertTrue("Donation type is incorrect/not present", bodytext.contains("CREDIT_RECURRING"));
+        Assert.assertTrue("CC type is incorrect/ not present", bodytext.contains("TEST: VISA-SSL"));
+
+        page.getSupporterByEmail(FUNDRAISING_TEST="worldpay3DS2TestUpsell", fields);
+        page.getSupporterById(FUNDRAISING_TEST="worldpay3DS2TestUpsell", fields);
+    }
+
+    @Parameters({"worldpay3DS1RecurringUpsell"})
+    @Test(groups = { "worldpay" })
+    public static void worldpay3DS1RecurringUpsell(String testId) throws InterruptedException, IOException {
+        page.ensAuthTest();
+
+        driver.get("https://test.engagingnetworks.app/page/14751/donate/1");
+
+        fields.selectDonationAmt("other");
+        fields.selectDonationAmtOther("25.99");
+        fields.selectTitle("Ms");
+        fields.setFirstname("Worldpay");
+        fields.setLastname("Single3DS1");
+//		Call the createEmail function
+        String new_email = fields.createEmail(testId);
+        fields.setEmailAddress(new_email);
+
+        fields.submit();
+
+        fields.setAddress1("1 Hilltop");
+        fields.setCity("Baltimore");
+        fields.selectRegion("MD");
+        fields.setPostCode("20001");
+        fields.selectCountry("US");
+
+        fields.setRecurFreq("MONTHLY");
+        fields.setRecurDay("23");
+
+        fields.selectPaymentType("Visa");
+        fields.selectPayCurrency("USD");
+        fields.setCCName("Wsingle3DS1");
+        fields.setCCNUmber("4000000000000002");
+        fields.setCCExpiry(new CharSequence[] {"12", "2023"});
+        fields.setCCV("123");
+
+        fields.submit();
+        //Thread.sleep(2000);
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you make it a 25.00 USD monthly gift instead?");
+        fields.clickUpsellYes();
+
+        //Validate 3D secure page
+        Thread.sleep(6000);
+        fields.waitForPageLoad();
+        Assert.assertTrue(driver.getCurrentUrl()
+                .contains("https://centinelapistag.cardinalcommerce.com/"));
+        driver.switchTo().frame(0);
+        WebElement cardinalPassword = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated
+                        (By.id("password")));
+        cardinalPassword.sendKeys("1234");
+        WebElement submitButton = driver.findElement(By.name("UsernamePasswordEntry"));
+        submitButton.click();
+        Thread.sleep(800);
+        driver.switchTo().defaultContent();
+        fields.waitForPageLoad();
+        //		Assert that the payment was successful and the third page was reached
+
+        String myurl = driver.getCurrentUrl();
+        Assert.assertTrue("Urls are not the same", myurl.equals("https://test.engagingnetworks.app/page/14751/donate/3"));
+
+        fields.getSupporterTaxID();
+
+//		Get the details from the third page and Verify the fields
+        String bodytext = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("Campaign ID not present", bodytext.contains("10746"));
+        Assert.assertTrue("Gateway details are incorrect/not present", bodytext.contains("RBS Gateway"));
+        Assert.assertTrue("Donation Amount is incorrect/not present", bodytext.contains("$25.00"));
+        Assert.assertTrue("Currency is incorrect/not present", bodytext.contains("USD"));
+        Assert.assertTrue("Donation type is incorrect/not present", bodytext.contains("CREDIT_RECURRING"));
+        Assert.assertTrue("CC type is incorrect/ not present", bodytext.contains("TEST: VISA-SSL"));
+
+        page.getSupporterByEmail(FUNDRAISING_TEST="worldpay3DS1RecurringUpsell", fields);
+        page.getSupporterById(FUNDRAISING_TEST="worldpay3DS1RecurringUpsell", fields);
+    }
+
+    @Parameters({"worldpay3DS2RecurringUpsell"})
+    @Test(groups = { "worldpay" })
+    public static void worldpay3DS2RecurringUpsell(String testId) throws InterruptedException, IOException {
+        page.ensAuthTest();
+
+        driver.get("https://test.engagingnetworks.app/page/14751/donate/1");
+
+        fields.selectDonationAmt("other");
+        fields.selectDonationAmtOther("25.99");
+        fields.selectTitle("Ms");
+        fields.setFirstname("Worldpay");
+        fields.setLastname("Single3DS2");
+//		Call the createEmail function
+        String new_email = fields.createEmail(testId);
+        fields.setEmailAddress(new_email);
+
+        fields.submit();
+
+        fields.setAddress1("1 Hilltop");
+        fields.setCity("Baltimore");
+        fields.selectRegion("MD");
+        fields.setPostCode("20001");
+        fields.selectCountry("US");
+
+        fields.setRecurFreq("MONTHLY");
+        fields.setRecurDay("23");
+
+        fields.selectPaymentType("Visa");
+        fields.selectPayCurrency("USD");
+        fields.setCCName("Wsingle3DS2");
+        fields.setCCNUmber("4000000000001091");
+        fields.setCCExpiry(new CharSequence[] {"12", "2023"});
+        fields.setCCV("123");
+
+        fields.submit();
+        //Thread.sleep(2000);
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you make it a 25.00 USD monthly gift instead?");
+        fields.clickUpsellYes();
+
+        //Validate 3D secure page
+        Thread.sleep(6000);
+        fields.waitForPageLoad();
+        Assert.assertTrue(driver.getCurrentUrl()
+                .contains("https://centinelapistag.cardinalcommerce.com/"));
+        driver.switchTo().frame(0);
+        WebElement cancelButton = driver.findElement(By.name("cancel"));
+        cancelButton.click();
+        Thread.sleep(6000);
+        driver.switchTo().defaultContent();
+        fields.waitForPageLoad();
+        fields.submit();
+        fields.validateUsellAmount("Thank you! Before we process your donation, will you make it a 25.00 USD monthly gift instead?");
+        fields.clickUpsellYes();
+
+        //Validate 3D secure page
+        Thread.sleep(6000);
+        fields.waitForPageLoad();
+        Assert.assertTrue(driver.getCurrentUrl()
+                .contains("https://centinelapistag.cardinalcommerce.com/"));
+        driver.switchTo().frame(0);
+
+        WebElement cardinalPassword = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated
+                        (By.name("challengeDataEntry")));
+        cardinalPassword.sendKeys("1234");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(cardinalPassword).click().perform();
+        actions.sendKeys(Keys.ENTER).perform();
+
+        Thread.sleep(800);
+        driver.switchTo().defaultContent();
+        fields.waitForPageLoad();
+
+        //		Assert that the payment was successful and the third page was reached
+        String myurl = driver.getCurrentUrl();
+        Assert.assertTrue("Urls are not the same", myurl.equals("https://test.engagingnetworks.app/page/14751/donate/3"));
+
+        fields.getSupporterTaxID();
+
+//		Get the details from the third page and Verify the fields
+        String bodytext = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue("Campaign ID not present", bodytext.contains("10746"));
+        Assert.assertTrue("Gateway details are incorrect/not present", bodytext.contains("RBS Gateway"));
+        Assert.assertTrue("Donation Amount is incorrect/not present", bodytext.contains("$25.00"));
+        Assert.assertTrue("Currency is incorrect/not present", bodytext.contains("USD"));
+        Assert.assertTrue("Donation type is incorrect/not present", bodytext.contains("CREDIT_RECURRING"));
+        Assert.assertTrue("CC type is incorrect/ not present", bodytext.contains("TEST: VISA-SSL"));
+
+        page.getSupporterByEmail(FUNDRAISING_TEST="worldpay3DS2RecurringUpsell", fields);
+        page.getSupporterById(FUNDRAISING_TEST="worldpay3DS2RecurringUpsell", fields);
+    }
 }

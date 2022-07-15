@@ -2,9 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Regression WORLDPAY">
-    <!--    <listeners>-->
-    <!--        <listener class-name="com.fnoor.WebDriverListener"></listener>-->
-    <!--    </listeners>-->
+
     <parameter name="browser" value="${browser}" />
     <parameter name="environment" value="${environment}"/>
     <parameter name="worldpayCCSingle" value="worldpayCCSingle"/>
@@ -16,11 +14,15 @@
     <parameter name="worldpay3DRecurringUpsell" value="worldpay3DRecurringUpsell"/>
     <parameter name="worldpay3DSecureTestNoUpsell" value="worldpay3DSecureTestNoUpsell"/>
     <parameter name="worldpay3DSecureTestUpsellNegative" value="worldpay3DSecureTestUpsellNegative"/>
+    <parameter name="worldpay3DS1TestUpsell" value="worldpay3DS1TestUpsell"/>
+    <parameter name="worldpay3DS2TestUpsell" value="worldpay3DS2TestUpsell"/>
+    <parameter name="worldpay3DS1RecurringUpsell" value="worldpay3DS1RecurringUpsell"/>
+    <parameter name="worldpay3DS2RecurringUpsell" value="worldpay3DS2RecurringUpsell"/>
 
     <test name="Donations WORLDPAY"  preserve-order="true">
         <groups>
             <run>
-                <include name="IATS"/>
+                <include name="WORLDPAY"/>
             </run>
         </groups>
         <classes>
@@ -35,6 +37,10 @@
                     <include name="worldpay3DRecurringUpsell" />
                     <include name="worldpay3DSecureTestNoUpsell" />
                     <include name="worldpay3DSecureTestUpsellNegative" />
+                    <include name="worldpay3DS1TestUpsell" />
+                    <include name="worldpay3DS2TestUpsell" />
+                    <include name="worldpay3DS1RecurringUpsell" />
+                    <include name="worldpay3DS2RecurringUpsell" />
 
                 </methods>
             </class>
