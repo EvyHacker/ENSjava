@@ -950,7 +950,8 @@ public class WORLDPAY {
 
         fields.submit();
         //Thread.sleep(2000);
-        fields.validateUsellAmount("Thank you! Before we process your donation, will you make it a 25.00 USD monthly gift instead?");
+        fields.validateUsellAmount
+                ("Thank you! Before we process your donation, will you make it a 25.00 USD monthly gift instead?");
         fields.clickUpsellYes();
 
         //Validate 3D secure page
