@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Regression STRIPE">
+    <parameter name="browser" value="${browser}" />
+    <parameter name="environment" value="${environment}"/>
+    <parameter name="bankGatewaySecondaryStripeVisa" value="bankGatewaySecondaryStripeVisa"/>
+    <parameter name="bankGatewaySecondaryStripeEnBank" value="bankGatewaySecondaryStripeEnBank"/>
+    <parameter name="stripeBancontactSingle" value="stripeBancontactSingle"/>
+<!--    <parameter name="stripeSingle3D" value="stripeSingle3D"/>-->
+<!--    <parameter name="stripeRecurring3D" value="stripeRecurring3D"/>-->
+<!--    <parameter name="stripeSEPAsingle" value="stripeSEPAsingle"/>-->
+<!--    <parameter name="stripeSEPArecurring" value="stripeSEPArecurring"/>-->
+<!--    <parameter name="stripeIDEALsingleABN" value="stripeIDEALsingleABN"/>-->
+<!--    <parameter name="stripeIDEALsingleASN" value="stripeIDEALsingleASN"/>-->
+<!--    <parameter name="stripeIDEALsingleASNRefund" value="stripeIDEALsingleASNRefund"/>-->
+<!--    <parameter name="stripeIDEALsingleDtDFees" value="stripeIDEALsingleDtDFees"/>-->
+<!--    <parameter name="stripePlaidSingle" value="stripePlaidSingle"/>-->
+<!--    <parameter name="stripePlaidRecurring" value="stripePlaidRecurring"/>-->
+<!--    <parameter name="stripePlaidSingleFee" value="stripePlaidSingleFee"/>-->
+    <test name="Gateway Bank"  preserve-order="true">
+        <groups>
+            <run>
+                <include name="bank"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.jira.DonationTests.GatewayBankVault" >
+                <methods>
+                    <include name="bankGatewaySecondaryStripeVisa" />
+                    <include name="bankGatewaySecondaryStripeEnBank" />
+                    <include name="stripeBancontactSingle" />
+<!--                    <include name="stripeRecurring" />-->
+
+<!--                    <include name="stripeSingle3D" />-->
+<!--                    <include name="stripeRecurring3D" />-->
+<!--                    <include name="stripeSEPAsingle" />-->
+<!--                    <include name="stripeSEPArecurring" />-->
+<!--                    <include name="stripeIDEALsingleABN" />-->
+<!--                    <include name="stripeIDEALsingleASNRefund" />-->
+<!--                    <include name="stripeIDEALsingleDtDFees" />-->
+<!--                    <include name="stripePlaidSingle" />-->
+<!--                    <include name="stripePlaidRecurring" />-->
+<!--                    <include name="stripePlaidSingleFee" />-->
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
