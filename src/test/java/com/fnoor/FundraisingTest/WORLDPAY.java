@@ -761,7 +761,7 @@ public class WORLDPAY {
         fields.selectDonationAmtOther("15.99");
         fields.selectTitle("Ms");
         fields.setFirstname("Worldpay");
-        fields.setLastname("Single3DS1");
+        fields.setLastname("Single3DS2");
 //		Call the createEmail function
         String new_email = fields.createEmail(testId);
         fields.setEmailAddress(new_email);
@@ -776,7 +776,7 @@ public class WORLDPAY {
 
         fields.selectPaymentType("Visa");
         fields.selectPayCurrency("USD");
-        fields.setCCName("Wsingle3DS1");
+        fields.setCCName("Wsingle3DS2");
         fields.setCCNUmber("4000000000001091");
         fields.setCCExpiry(new CharSequence[] {"12", "2023"});
         fields.setCCV("123");

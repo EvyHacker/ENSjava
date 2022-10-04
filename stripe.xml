@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Regression STRIPE">
+<suite name="Regression STRIPE" parallel="classes" thread-count="2" verbose="5">
+
     <parameter name="browser" value="${browser}" />
     <parameter name="environment" value="${environment}"/>
     <parameter name="stripeSingle" value="stripeSingle"/>
@@ -13,7 +14,6 @@
     <parameter name="stripeSEPArecurring" value="stripeSEPArecurring"/>
     <parameter name="stripeIDEALsingleABN" value="stripeIDEALsingleABN"/>
     <parameter name="stripeIDEALsingleASN" value="stripeIDEALsingleASN"/>
-    <parameter name="stripeIDEALsingleASNRefund" value="stripeIDEALsingleASNRefund"/>
     <parameter name="stripeIDEALsingleDtDFees" value="stripeIDEALsingleDtDFees"/>
     <parameter name="stripePlaidSingle" value="stripePlaidSingle"/>
     <parameter name="stripePlaidRecurring" value="stripePlaidRecurring"/>
@@ -28,19 +28,49 @@
             <class name="com.fnoor.FundraisingTest.STRIPE" >
                 <methods>
                     <include name="stripeIDEALsingleASN" />
-                    <include name="stripeSingle" />
-                    <include name="stripeRecurring" />
-                    <include name="stripeBancontactSingle" />
-                    <include name="stripeSingle3D" />
-                    <include name="stripeRecurring3D" />
-                    <include name="stripeSEPAsingle" />
-                    <include name="stripeSEPArecurring" />
-                    <include name="stripeIDEALsingleABN" />
-                    <include name="stripeIDEALsingleASNRefund" />
-                    <include name="stripeIDEALsingleDtDFees" />
-                    <include name="stripePlaidSingle" />
-                    <include name="stripePlaidRecurring" />
-                    <include name="stripePlaidSingleFee" />
+<!--                    <include name="stripeSingle" />-->
+<!--                    <include name="STRIPE" />-->
+<!--                    <include name="stripeRecurring" />-->
+<!--                    <include name="stripeBancontactSingle" />-->
+<!--                    <include name="stripeSingle3D" />-->
+<!--                    <include name="stripeRecurring3D" />-->
+<!--                    <include name="stripeSEPAsingle" />-->
+<!--                    <include name="stripeSEPArecurring" />-->
+<!--                    <include name="stripeIDEALsingleABN" />-->
+<!--                    <include name="stripeIDEALsingleDtDFees" />-->
+<!--                    <include name="stripePlaidSingle" />-->
+<!--                    <include name="stripePlaidRecurring" />-->
+<!--                    <include name="stripePlaidSingleFee" />-->
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Donations STRIPE"  preserve-order="true">
+        <parameter name="browser" value="${browser}" />
+        <parameter name="environment" value="${environment}"/>
+        <parameter name="stripeIDEALsingleASNRefund" value="stripeIDEALsingleASNRefund"/>
+        <groups>
+            <run>
+                <include name="stripe_refunded"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.fnoor.FundraisingTest.Refunds.STRIPE_REFUNDED" >
+                <methods>
+                    <include name="stripeIDEALsingleASN" />
+                    <!--                    <include name="stripeSingle" />-->
+                    <!--                    <include name="STRIPE" />-->
+                    <!--                    <include name="stripeRecurring" />-->
+                    <!--                    <include name="stripeBancontactSingle" />-->
+                    <!--                    <include name="stripeSingle3D" />-->
+                    <!--                    <include name="stripeRecurring3D" />-->
+                    <!--                    <include name="stripeSEPAsingle" />-->
+                    <!--                    <include name="stripeSEPArecurring" />-->
+                    <!--                    <include name="stripeIDEALsingleABN" />-->
+                    <!--                    <include name="stripeIDEALsingleDtDFees" />-->
+                    <!--                    <include name="stripePlaidSingle" />-->
+                    <!--                    <include name="stripePlaidRecurring" />-->
+                    <!--                    <include name="stripePlaidSingleFee" />-->
                 </methods>
             </class>
         </classes>

@@ -2,16 +2,15 @@ package com.fnoor.FundraisingTest;
 
 import com.fnoor.FundraisingPageDriver;
 import com.fnoor.PageFields;
+import com.fnoor.WebTestFactory;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.TestNG;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -48,8 +47,10 @@ public class STRIPE {
     }
 
     @Parameters({"stripeSingle"})
-    @Test(groups = { "stripe" })
+    @Test(groups = { "stripe" }, singleThreaded = true, invocationCount = 2)
     public static void stripeSingle(String testId) throws InterruptedException, IOException {
+
+
         page.ensAuthTest();
         driver.get("https://test.engagingnetworks.app/page/11502/donate/1?mode=DEMO");
 
@@ -372,9 +373,9 @@ public class STRIPE {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt
                 (By.xpath("//iframe[contains(@name, 'privateStripe')]")));
-       // wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(0));
+        // wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(0));
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt
-                        (By.xpath("//iframe[contains(@id, 'challengeFrame')]")));
+                (By.xpath("//iframe[contains(@id, 'challengeFrame')]")));
 
         WebElement myCompleteDynamicElement = (new WebDriverWait(driver, 60))
                 .until(ExpectedConditions.presenceOfElementLocated
@@ -563,15 +564,15 @@ public class STRIPE {
         Thread.sleep(2000);
         driver.switchTo().frame(0);
         try{
-        WebElement idealSelect1 = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated
-                        (By.cssSelector(".SelectField-control")));
+            WebElement idealSelect1 = (new WebDriverWait(driver, 20))
+                    .until(ExpectedConditions.presenceOfElementLocated
+                            (By.cssSelector(".SelectField-control")));
             actions.moveToElement(idealSelect1).click().perform();
             actions.sendKeys(Keys.ENTER).perform();
             Thread.sleep(2000);
-         } catch (StaleElementReferenceException e) {
-        System.err.println(e.getMessage());
-    }
+        } catch (StaleElementReferenceException e) {
+            System.err.println(e.getMessage());
+        }
 
         driver.switchTo().defaultContent();
         fields.submit();
@@ -641,7 +642,7 @@ public class STRIPE {
         Assert.assertTrue("Urls are not the same, payment didn't go through",
                 driver.getCurrentUrl().contains("https://stripe.com/"));
         WebElement fail = driver.findElement(By.xpath("//a[normalize-space()='Fail Test Payment']"));
-        fail.click();
+         fail.click();
         Thread.sleep(4000);
         fields.waitForURLToChange("https://test.engagingnetworks.app/page/13323/donate/2?val" );
         fields.selectPaymentType("iDEAL");
@@ -668,7 +669,7 @@ public class STRIPE {
         WebElement authorize = driver.findElement(By.xpath("//a[normalize-space()='Authorize Test Payment']"));
         authorize.click();
         fields.waitForPageLoad();
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         String myurl = driver.getCurrentUrl();
         Assert.assertTrue("Urls are not the same", myurl.equals("https://test.engagingnetworks.app/page/13323/donate/3"));
 
@@ -783,7 +784,7 @@ public class STRIPE {
         fields.clickFeechekbox();
         fields.submit();
         Thread.sleep(2000);
-        
+
         // Validate fail test payment
         Assert.assertTrue("Urls are not the same, payment didn't go through",
                 driver.getCurrentUrl().contains("https://stripe.com/"));
@@ -897,7 +898,7 @@ public class STRIPE {
         Thread.sleep(2000);
         driver.switchTo().defaultContent();
         Assert.assertTrue("Urls are not the same, payment didn't go through",
-               driver.getCurrentUrl().contains("https://test.engagingnetworks.app/page/14411/donate/2#"));
+                driver.getCurrentUrl().contains("https://test.engagingnetworks.app/page/14411/donate/2#"));
         fields.submit();
         fields.waitForPageLoad();
         fields.waitForURLToChange("https://test.engagingnetworks.app/page/14411/donate/3");

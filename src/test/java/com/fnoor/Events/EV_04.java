@@ -4,8 +4,12 @@ import com.fnoor.FundraisingPageDriver;
 import com.fnoor.PageFields;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -65,16 +69,37 @@ public class EV_04 {
         fields.waitForURLToChange("https://test.engagingnetworks.app/page/12622/event/2");
         fields.verifyEventSummary("5.00 USD");
         fields.verifyEventSummary("$24.99");
-        fields.selectPaymentType("Visa");
-        fields.setCCName("Unit Tester");
-        fields.setCCNUmber("4222222222222220");
-        fields.setCCV("123");
-        fields.setCCExpiry(new CharSequence[]{"12", "2022"});
+        fields.selectPaymentType("Paypal");
         fields.submit();
 
-//		Assert that the payment was successful and the third page was reached
+        fields.waitForPageLoadPayPal();
+        fields.waitForURLToChange("https://www.sandbox.paypal.com/");
+        //		Assert that the payment is redirected to Paypal page
         String myurl = driver.getCurrentUrl();
-        Assert.assertTrue("Urls are not the same", myurl.equals("https://test.engagingnetworks.app/page/12622/event/3"));
+        Assert.assertTrue("Didn't redirect to Paypal", myurl.contains("https://www.sandbox.paypal.com/"));
+        System.out.println("U r on paypal email page");
+        fields.waitForPageLoad();
+
+        fields.setPaypalEmail();
+        fields.nextPayapl();
+        fields.waitForPageLoad();
+        fields.setPaypalPassword();
+        fields.submitPaypal();
+        fields.waitForPageLoadPayPal();
+        Thread.sleep(4000);
+
+        WebElement paypalContinue = (new WebDriverWait(driver, 600))
+                .until(ExpectedConditions.presenceOfElementLocated
+                        (By.id("payment-submit-btn")));
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", paypalContinue);
+
+        fields.waitForPageLoad();
+        Thread.sleep(8000);
+
+//		Assert that the payment was successful and the third page was reached
+        Assert.assertTrue("Urls are not the same",
+                driver.getCurrentUrl().equals("https://test.engagingnetworks.app/page/12622/donate/3"));
 
         fields.getSupporterTaxID();
 
@@ -86,7 +111,7 @@ public class EV_04 {
         Assert.assertTrue("Additional Donation Amount is incorrect/not present", bodytext.contains("19.99"));
         Assert.assertTrue("Currency is incorrect/not present", bodytext.contains("USD"));
         Assert.assertTrue("Donation type is incorrect/not present", bodytext.contains("CREDIT_SINGLE"));
-        Assert.assertTrue("CC type is incorrect/ not present", bodytext.contains("TEST: Visa"));
+        Assert.assertTrue("CC type is incorrect/ not present", bodytext.contains("TEST: Paypal"));
 
         page.getSupporterByEmail(FUNDRAISING_TEST = "singleTicketWithDiscount", fields);
         page.getSupporterById(FUNDRAISING_TEST = "singleTicketWithDiscount", fields);

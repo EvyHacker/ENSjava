@@ -34,12 +34,12 @@ public class MONERIS {
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     }
 
-    @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+//    @AfterClass(alwaysRun = true)
+//    public void tearDown() {
+//        if (driver != null) {
+//            driver.quit();
+//        }
+//    }
 
     @Parameters({"moneriseSelectSingle"})
     @Test(groups = { "moneris" })

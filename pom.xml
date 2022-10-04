@@ -23,29 +23,29 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
-                                <configuration>
-                                    <suiteXmlFiles>
-                                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
-                                    </suiteXmlFiles>
-                                    <groups>Donations</groups>
-                                    <groups>Donations IATS</groups>
-                                    <groups>Donations VANTIV</groups>
-                                    <groups>Donations WORLDPAY</groups>
-                                    <groups>Donations MONERIS</groups>
-                                    <groups>Donations PAYFLOW</groups>
-                                    <groups>Donations RSM</groups>
-                                    <groups>Donations STRIPE</groups>
-                                    <groups>Donations PAYSAFE</groups>
-                                    <groups>Donations PAYSAFE_OTHER</groups>
-                                    <groups>Donations PAYPAL</groups>
-                                    <groups>Donations GOOGLE</groups>
-                                    <groups>Donations REDIRECT</groups>
-                                    <groups>Donations STANDALONE</groups>
-                                    <groups>ETT</groups>
-                                    <groups>EVENTS</groups>
-                                    <groups>PAGE</groups>
-                                    <groups>SF</groups>
-                                </configuration>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <groups>Donations</groups>
+                    <groups>Donations IATS</groups>
+                    <groups>Donations VANTIV</groups>
+                    <groups>Donations WORLDPAY</groups>
+                    <groups>Donations MONERIS</groups>
+                    <groups>Donations PAYFLOW</groups>
+                    <groups>Donations RSM</groups>
+                    <groups>Donations STRIPE</groups>
+                    <groups>Donations PAYSAFE</groups>
+                    <groups>Donations PAYSAFE_OTHER</groups>
+                    <groups>Donations PAYPAL</groups>
+                    <groups>Donations GOOGLE</groups>
+                    <groups>Donations REDIRECT</groups>
+                    <groups>Donations STANDALONE</groups>
+                    <groups>ETT</groups>
+                    <groups>EVENTS</groups>
+                    <groups>PAGE</groups>
+                    <groups>SF</groups>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
